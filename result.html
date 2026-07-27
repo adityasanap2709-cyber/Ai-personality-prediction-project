@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>Prediction Result</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:20px;
+}
+
+.container{
+    width:700px;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h1{
+    text-align:center;
+}
+
+h2{
+    margin-top:25px;
+    color:#333;
+}
+
+textarea{
+    width:100%;
+    height:180px;
+    padding:10px;
+    font-size:15px;
+    resize:none;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:left;
+}
+
+th{
+    background:#007bff;
+    color:white;
+}
+
+a{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    text-decoration:none;
+    font-size:18px;
+    color:#007bff;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Personality Prediction Result</h1>
+
+<h2>Extracted / Entered Text</h2>
+
+<textarea readonly>{{ extracted_text }}</textarea>
+
+<h2>Predicted OCEAN Personality Traits</h2>
+
+<table>
+
+<tr>
+<th>Trait</th>
+<th>Score</th>
+</tr>
+
+{% for key, value in result.items() %}
+
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="/">Predict Again</a>
+
+</div>
+
+</body>
+</html>
