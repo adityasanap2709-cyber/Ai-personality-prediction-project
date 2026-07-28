@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Personality AI</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/">
+            <i class="bi bi-cpu-fill"></i> Personality AI
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+          <ul class="navbar-nav ms-auto">
+
+    <li class="nav-item">
+        <a class="nav-link" href="/" data-lang="home">Home</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link active" href="/about" data-lang="about">About</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/analyze" data-lang="analyze">Analyze</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/dashboard" data-lang="dashboard">Dashboard</a>
+    </li>
+
+</ul>
+   <button
+class="btn btn-outline-light ms-3"
+onclick="toggleTheme()">
+
+<i id="themeIcon" class="bi bi-moon-fill"></i>
+
+</button>
+
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ================= HEADER ================= -->
+
+<section class="dashboard-header">
+
+    <div class="container text-center">
+
+        <h1>AI Personality Dashboard</h1>
+
+        <p>
+            Personality Prediction Result
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+
+<section class="dashboard-section">
+
+<div class="container">
+
+<div class="row">
+
+<!-- USER CARD -->
+
+<div class="col-lg-4 mb-4">
+
+<div class="dashboard-card">
+
+<h3>
+<i class="bi bi-person-circle"></i>
+User Information
+</h3>
+
+<hr>
+
+<p>
+
+<strong>Username :</strong>
+
+{{ result[0] if result else "No Data" }}
+
+</p>
+
+<p>
+
+<strong>Status :</strong>
+
+Analysis Completed
+
+</p>
+
+<p>
+
+<strong>Prediction :</strong>
+
+{{ result[1] if result else "--" }}
+
+</p>
+
+<p>
+
+<strong>Confidence :</strong>
+
+{{ result[2] if result else "0" }}%
+
+</p>
+
+</div>
+
+</div>
+
+<!-- RESULT CARD -->
+
+<div class="col-lg-8 mb-4">
+
+<div class="dashboard-card text-center">
+
+<h3>
+
+Prediction Result
+
+</h3>
+
+<hr>
+
+<h1 class="result-type">
+
+{{ result[1] if result else "--" }}
+
+</h1>
+
+<h2 class="confidence">
+
+{{ result[2] if result else "0" }}%
+
+</h2>
+
+<p class="result-text">
+
+AI Personality Prediction
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= DASHBOARD STATISTICS ================= -->
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+
+        <div class="dashboard-card text-center">
+
+            <i class="bi bi-people-fill display-4 text-primary"></i>
+
+            <h5 class="mt-3">Total Analysis</h5>
+
+            <h2>{{ total_analysis }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="dashboard-card text-center">
+
+            <i class="bi bi-bullseye display-4 text-success"></i>
+
+            <h5 class="mt-3">Average Confidence</h5>
+
+            <h2>{{ average_confidence }}%</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="dashboard-card text-center">
+
+            <i class="bi bi-bar-chart-fill display-4 text-warning"></i>
+
+            <h5 class="mt-3">Most Common Type</h5>
+
+            <h2>{{ most_common }}</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- TRAITS -->
+
+<div class="dashboard-card">
+
+<h3 class="mb-4">
+
+Personality Traits
+
+</h3>
+
+<label>Introvert</label>
+
+<div class="progress mb-3">
+
+<div class="progress-bar bg-primary"
+
+style="width: {{ result[3] if result else 0 }}%;">
+
+{{ result[3] if result else 0 }}%
+
+</div>
+
+</div>
+
+<label>Thinking</label>
+
+<div class="progress mb-3">
+
+<div class="progress-bar bg-success"
+
+style="width: {{ result[4] if result else 0 }}%;">
+
+{{ result[4] if result else 0 }}%
+
+</div>
+
+</div>
+
+<label>Judging</label>
+
+<div class="progress mb-3">
+
+<div class="progress-bar bg-warning"
+
+style="width: {{ result[5] if result else 0 }}%;">
+
+{{ result[5] if result else 0 }}%
+
+</div>
+
+</div>
+
+<label>Intuition</label>
+
+<div class="progress mb-4">
+
+<div class="progress-bar bg-danger"
+
+style="width: {{ result[6] if result else 0 }}%;">
+
+{{ result[6] if result else 0 }}%
+
+</div>
+
+</div>
+<!-- ================= CHART ================= -->
+
+<div class="row mt-5">
+
+    <div class="col-lg-12">
+
+        <div class="dashboard-card">
+
+            <h3 class="mb-4 text-center">
+
+                Personality Analysis Chart
+
+            </h3>
+
+            <canvas id="personalityChart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ================= AI INSIGHTS ================= -->
+
+<div class="row mt-5">
+
+    <div class="col-md-4 mb-4">
+
+        <div class="dashboard-card text-center">
+
+            <i class="bi bi-lightbulb-fill display-4 text-warning"></i>
+
+            <h4 class="mt-3">Strengths</h4>
+
+            <p>
+                Logical Thinking<br>
+                Strategic Planning<br>
+                Independent Decision Making
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="dashboard-card text-center">
+
+            <i class="bi bi-exclamation-triangle-fill display-4 text-danger"></i>
+
+            <h4 class="mt-3">Weaknesses</h4>
+
+            <p>
+                Overthinking<br>
+                Perfectionism<br>
+                Less Emotional Expression
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="dashboard-card text-center">
+
+            <i class="bi bi-briefcase-fill display-4 text-success"></i>
+
+            <h4 class="mt-3">Career Suggestions</h4>
+
+            <p>
+                Software Engineer<br>
+                Data Scientist<br>
+                AI Engineer
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= ACTION BUTTONS ================= -->
+
+<div class="text-center mt-5">
+
+    <a href="/analyze" class="btn btn-primary btn-lg me-3">
+
+        <i class="bi bi-arrow-repeat"></i>
+        Analyze Again
+
+    </a>
+<div class="text-center mt-4">
+
+    <a href="/download_report" class="btn btn-success btn-lg me-3">
+
+        <i class="bi bi-download"></i>
+
+        Download Report
+
+    </a>
+
+    <a href="/history" class="btn btn-primary btn-lg">
+
+        <i class="bi bi-clock-history"></i>
+
+        View History
+
+    </a>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer text-center">
+
+    <div class="container">
+
+        <p class="mb-0">
+
+            © 2026 AI Personality Prediction System |
+            Developed using Flask, HTML, CSS, Bootstrap & JavaScript
+
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Dashboard JS -->
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<!-- Theme JS -->
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+</body>
+
+</html>

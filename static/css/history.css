@@ -1,0 +1,170 @@
+/* ==========================================
+   History Page CSS
+   AI Personality Prediction System
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0B1120;
+    color:#fff;
+}
+
+/* ================= NAVBAR ================= */
+
+.custom-navbar{
+    background:rgba(8,17,31,.92);
+    transition:.4s;
+}
+
+/* ================= HEADER ================= */
+
+.dashboard-header{
+
+    padding:140px 20px 70px;
+
+    background:linear-gradient(135deg,#16213E,#0F3460);
+
+    text-align:center;
+
+}
+
+.dashboard-header h1{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.dashboard-header p{
+
+    font-size:18px;
+
+    color:#d8d8d8;
+
+}
+
+/* ================= SECTION ================= */
+
+.dashboard-section{
+
+    padding:60px 0;
+
+}
+
+/* ================= CARD ================= */
+
+.dashboard-card{
+
+    background:#16213E;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+/* ================= TABLE ================= */
+
+.table{
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#0F3460;
+
+}
+
+.table th{
+
+    color:#fff;
+
+    font-weight:600;
+
+    border:none;
+
+    padding:15px;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+    border-color:rgba(255,255,255,.08);
+
+    padding:15px;
+
+}
+
+.table tbody tr{
+
+    transition:.3s;
+
+}
+
+.table tbody tr:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+/* ================= BUTTON ================= */
+
+.btn-primary{
+
+    padding:12px 30px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(13,110,253,.35);
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .dashboard-header h1{
+
+        font-size:34px;
+
+    }
+
+    .dashboard-card{
+
+        padding:20px;
+
+    }
+
+    .table{
+
+        font-size:14px;
+
+    }
+
+}
