@@ -1,56 +1,43 @@
-// =========================================
-// Dashboard JavaScript
-// AI Personality Prediction System
-// =========================================
+// =====================================================
+// AI Personality Prediction Dashboard
+// dashboard.js
+// =====================================================
 
+// ===============================
+// Page Loading Animation
+// ===============================
 
-// =========================================
+window.addEventListener("load", () => {
+
+    document.body.classList.add("loaded");
+
+});
+
+// ===============================
 // Navbar Scroll Effect
-// =========================================
+// ===============================
 
-window.addEventListener("scroll", function () {
+const navbar = document.querySelector(".dashboard-navbar");
 
-    const navbar = document.querySelector(".custom-navbar");
+window.addEventListener("scroll", () => {
+
+    if (!navbar) return;
 
     if (window.scrollY > 50) {
 
-        navbar.style.background = "#08111F";
-        navbar.style.boxShadow = "0 8px 25px rgba(0,0,0,.35)";
+        navbar.classList.add("navbar-scrolled");
 
     } else {
 
-        navbar.style.background = "rgba(8,17,31,.90)";
-        navbar.style.boxShadow = "none";
+        navbar.classList.remove("navbar-scrolled");
 
     }
 
 });
 
-
-// =========================================
-// Page Fade Animation
-// =========================================
-
-window.addEventListener("load", function () {
-
-    document.body.style.opacity = "0";
-
-    setTimeout(function () {
-
-        document.body.style.transition = "opacity .8s ease";
-
-        document.body.style.opacity = "1";
-
-    }, 100);
-
-});
-
-
-// =========================================
-// Dashboard Card Animation
-// =========================================
-
-const cards = document.querySelectorAll(".dashboard-card");
+// ===============================
+// Fade Animation
+// ===============================
 
 const observer = new IntersectionObserver((entries) => {
 
@@ -58,9 +45,7 @@ const observer = new IntersectionObserver((entries) => {
 
         if (entry.isIntersecting) {
 
-            entry.target.style.opacity = "1";
-
-            entry.target.style.transform = "translateY(0)";
+            entry.target.classList.add("show");
 
         }
 
@@ -68,229 +53,196 @@ const observer = new IntersectionObserver((entries) => {
 
 }, {
 
-    threshold: 0.2
+    threshold:0.15
 
 });
 
-cards.forEach(card => {
+document.querySelectorAll(
 
-    card.style.opacity = "0";
+".trait-card,.overall-card,.glass-section,.insight-card,.action-card"
 
-    card.style.transform = "translateY(40px)";
-
-    card.style.transition = "all .8s ease";
+).forEach(card=>{
 
     observer.observe(card);
 
 });
 
-
-// =========================================
+// ===============================
 // Progress Bar Animation
-// =========================================
+// ===============================
 
-const progressBars = document.querySelectorAll(".progress-bar");
+const progressBars=document.querySelectorAll(".progress-bar");
 
-const progressObserver = new IntersectionObserver((entries) => {
+progressBars.forEach(bar=>{
 
-    entries.forEach(entry => {
+    const width=bar.style.width;
 
-        if (entry.isIntersecting) {
+    bar.style.width="0%";
 
-            const progressBar = entry.target;
+    setTimeout(()=>{
 
-            const width = progressBar.style.width;
+        bar.style.transition="width 1.8s ease";
 
-            progressBar.style.width = "0%";
+        bar.style.width=width;
 
-            setTimeout(() => {
+    },400);
 
-                progressBar.style.transition = "width 2s ease";
+});
 
-                progressBar.style.width = width;
+// ===============================
+// Overall Counter Animation
+// ===============================
 
-            }, 200);
+const counter = document.querySelector(".overall-circle");
+
+if (counter) {
+
+    let final = parseFloat(counter.textContent);
+
+    let current = 0;
+
+    const timer = setInterval(() => {
+
+        current += 0.1;
+
+        if (current >= final) {
+
+            current = final;
+
+            clearInterval(timer);
 
         }
 
-    });
+        counter.textContent = current.toFixed(1) + "/5";
 
-}, {
-
-    threshold: 0.5
-
-});
-
-progressBars.forEach(bar => {
-
-    progressObserver.observe(bar);
-
-});
-
-
-// =========================================
-// Hover Effect
-// =========================================
-
-cards.forEach(card => {
-
-    card.addEventListener("mouseenter", () => {
-
-        card.style.transform = "translateY(-8px)";
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "translateY(0)";
-
-    });
-
-});
-
-
-// =========================================
-// Current Date
-// =========================================
-
-const dateElement = document.querySelector(".dashboard-card p:nth-child(4)");
-
-if (dateElement) {
-
-    const today = new Date();
-
-    const options = {
-
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-
-    };
-
-    dateElement.innerHTML =
-        "<strong>Date :</strong> " +
-        today.toLocaleDateString("en-GB", options);
+    }, 20);
 
 }
 
 
-// =========================================
-// Console
-// =========================================
+// ===============================
+// Floating Background Animation
+// ===============================
 
-console.log("Dashboard Loaded Successfully 🚀");
-// =====================================
-// Personality Chart
-// =====================================
+document.querySelectorAll(".bg-circle").forEach((circle,index)=>{
 
-const chartCanvas = document.getElementById("personalityChart");
+circle.animate(
 
-if (chartCanvas) {
+[
 
-    new Chart(chartCanvas, {
+{
 
-        type: "bar",
+transform:"translateY(0px)"
 
-        data: {
+},
 
-            labels: [
+{
 
-                "Introvert",
+transform:"translateY(-25px)"
 
-                "Thinking",
+},
 
-                "Judging",
+{
 
-                "Intuition"
-
-            ],
-
-            datasets: [{
-
-                label: "Personality Score",
-
-                data: [
-
-                    90,
-
-                    85,
-
-                    88,
-
-                    82
-
-                ],
-
-                backgroundColor: [
-
-                    "#4F46E5",
-
-                    "#22C55E",
-
-                    "#F59E0B",
-
-                    "#EF4444"
-
-                ],
-
-                borderRadius: 8
-
-            }]
-
-        },
-
-        options: {
-
-            responsive: true,
-
-            plugins: {
-
-                legend: {
-
-                    display: false
-
-                }
-
-            },
-
-            scales: {
-
-                y: {
-
-                    beginAtZero: true,
-
-                    max: 100
-
-                }
-
-            }
-
-        }
-
-    });
+transform:"translateY(0px)"
 
 }
-// ================================
-// Dark / Light Theme
-// ================================
 
+],
+
+{
+
+duration:6000+(index*1200),
+
+iterations:Infinity,
+
+direction:"alternate",
+
+easing:"ease-in-out"
+
+}
+
+);
+
+});
+
+
+// ===============================
+// Hover Animation
+// ===============================
+
+document.querySelectorAll(
+
+".trait-card,.overall-card,.glass-section,.insight-card,.action-card"
+
+).forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+card.style.setProperty("--x",x+"px");
+
+card.style.setProperty("--y",y+"px");
+
+});
+
+});
+
+
+// ===============================
+// Button Ripple Effect
+// ===============================
+
+document.querySelectorAll(".btn").forEach(btn=>{
+
+btn.addEventListener("mouseenter",()=>{
+
+btn.style.transition=".35s";
+
+btn.style.transform="translateY(-3px)";
+
+});
+
+btn.addEventListener("mouseleave",()=>{
+
+btn.style.transform="translateY(0px)";
+
+});
+
+});
 const themeBtn = document.getElementById("themeToggle");
 
-if (themeBtn) {
+if(themeBtn){
 
-    themeBtn.addEventListener("click", () => {
+    // Load saved theme
+    if(localStorage.getItem("theme")==="light"){
+
+        document.body.classList.add("light-mode");
+
+        themeBtn.innerHTML='<i class="bi bi-sun-fill"></i>';
+
+    }
+
+    themeBtn.addEventListener("click",()=>{
 
         document.body.classList.toggle("light-mode");
 
-        if (document.body.classList.contains("light-mode")) {
+        if(document.body.classList.contains("light-mode")){
 
-            themeBtn.innerHTML =
-                '<i class="bi bi-sun-fill"></i>';
+            localStorage.setItem("theme","light");
 
-        } else {
+            themeBtn.innerHTML='<i class="bi bi-sun-fill"></i>';
 
-            themeBtn.innerHTML =
-                '<i class="bi bi-moon-fill"></i>';
+        }else{
+
+            localStorage.setItem("theme","dark");
+
+            themeBtn.innerHTML='<i class="bi bi-moon-fill"></i>';
 
         }
 

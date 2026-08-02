@@ -168,18 +168,15 @@ body::after{
 ========================================== */
 
 .login-container{
-
-    width:100%;
-
+    min-height:100vh;
     display:flex;
-
     justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
+    align-items:flex-start;
+    padding-top:30px;
+    padding-bottom:30px;
 }
+
+
 
 /* ==========================================
            LOGIN CARD
@@ -259,27 +256,6 @@ body::after{
 
 }
 
-/* ==========================================
-             LOGO
-========================================== */
-
-.logo-box{
-
-    display:flex;
-
-    justify-content:center;
-
-    margin-bottom:20px;
-
-}
-
-.logo{
-
-    width:95px;
-
-    filter:drop-shadow(0 0 25px rgba(111,99,255,.45));
-
-}
 /* ==========================================
               HEADING
 ========================================== */
@@ -476,7 +452,7 @@ body::after{
 
     align-items:center;
 
-    margin:28px 0;
+    margin:18px 0;
 
 }
 
@@ -506,17 +482,19 @@ body::after{
 /* ==========================================
             GOOGLE BUTTON
 ========================================== */
+.social-login{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
 
-.google-btn{
-
-    width:100%;
-    height:56px;
-
-    margin-bottom:15px;
+.social-btn{
 
     display:flex;
     align-items:center;
     justify-content:center;
+
     gap:12px;
 
     background:#ffffff;
@@ -525,109 +503,80 @@ body::after{
 
     text-decoration:none;
 
+    padding:18px;
+
     border-radius:14px;
+
+    border:1px solid #dcdcdc;
+
+    font-size:20px;
 
     font-weight:600;
 
-    transition:.35s;
+    transition:.3s;
 
 }
 
-.google-btn img{
+.social-btn:hover{
 
-    width:24px;
-    height:24px;
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
 
 }
 
-.google-btn:hover{
+.social-btn img{
 
-    background:#f3f3f3;
+    width:28px;
 
+}
+
+.bi-github{
+
+    color:#000;
+
+}
+
+.bi-linkedin{
+
+    color:#0A66C2;
+
+}
+
+.bi-facebook{
+
+    color:#1877F2;
+
+}
+.social-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    width:100%;
+    height:60px;
+
+    background:#fff;
     color:#222;
 
-    transform:translateY(-3px);
-
-}
-
-/* ==========================================
-           FACEBOOK BUTTON
-========================================== */
-
-.facebook-btn{
-
-    width:100%;
-    height:56px;
-
-    margin-bottom:15px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-
-    background:#1877F2;
-
-    color:#fff;
-
+    border-radius:12px;
     text-decoration:none;
 
-    border-radius:14px;
-
     font-weight:600;
+    font-size:20px;
 
-    transition:.35s;
-
+    transition:.3s;
 }
 
-.facebook-btn:hover{
+.social-btn img{
+    width:28px;
+    height:28px;
+}
 
-    background:#1669d8;
-
-    color:#fff;
-
+.social-btn:hover{
     transform:translateY(-3px);
-
 }
-
-/* ==========================================
-           LINKEDIN BUTTON
-========================================== */
-
-.linkedin-btn{
-
-    width:100%;
-    height:56px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-
-    background:#0A66C2;
-
-    color:#fff;
-
-    text-decoration:none;
-
-    border-radius:14px;
-
-    font-weight:600;
-
-    transition:.35s;
-
-}
-
-.linkedin-btn:hover{
-
-    background:#0857a5;
-
-    color:#fff;
-
-    transform:translateY(-3px);
-
-}
-
 /* ==========================================
           REGISTER LINK
 ========================================== */
@@ -889,5 +838,80 @@ height:52px;
 font-size:15px;
 
 }
+/* ==========================================
+            RESPONSIVE
+========================================== */
 
+@media (max-width:768px){
+
+body{
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.login-container{
+    min-height:100vh;
+    padding:20px 15px;
+    align-items:center;
+}
+
+.login-card{
+    width:100%;
+    max-width:420px;
+    padding:30px 22px;
+    border-radius:22px;
+}
+
+.login-card h1{
+    font-size:38px;
+}
+
+.login-card p{
+    font-size:16px;
+    line-height:26px;
+    margin-bottom:25px;
+}
+
+.input-group-custom input{
+    height:54px;
+    font-size:15px;
+}
+
+.login-btn{
+    height:54px;
+    font-size:17px;
+}
+
+.social-login{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.social-btn{
+    height:54px;
+    padding:12px;
+    font-size:16px;
+}
+
+.social-btn img{
+    width:24px;
+    height:24px;
+}
+
+.remember-box{
+    font-size:14px;
+}
+
+.theme-btn{
+    width:46px;
+    height:46px;
+    top:15px;
+    right:15px;
+}
+
+body::after{
+    width:450px;
+    height:450px;
+    opacity:.08;
+}
 }

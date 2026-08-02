@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,7 +102,7 @@
 {% endif %}
 
             </ul>
-
+                
             <!-- Theme Button -->
             <button class="btn btn-outline-light ms-3"
                     onclick="toggleTheme()">
@@ -263,7 +265,7 @@
 
                 <h2 class="section-title">
 
-                    About Our Project
+            About Our Personality 
 
                 </h2>
 
@@ -387,174 +389,160 @@
     </div>
 
 </section>
-<!-- ================= PREMIUM FOOTER ================= -->
-
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
 
-    <div class="container">
+    <div class="footer-container">
 
-        <div class="footer-top">
+        <!-- Left -->
+        <div class="footer-left">
 
-            <div class="row gy-5">
+            <h2>
+                <i class="fas fa-microchip"></i>
+                Personality AI
+            </h2>
 
-                <!-- LEFT -->
+            <p>
+                AI Based Personality Prediction System using Artificial Intelligence,
+                Machine Learning and Natural Language Processing (NLP).
+            </p>
 
-                <div class="col-lg-6">
+            <div class="contact">
+                <p><i class="fas fa-envelope"></i> narutevaishnav@gmail.com</p>
 
-                    <h3 class="footer-logo">
+                <p><i class="fas fa-phone"></i> +91 9226120917</p>
 
-                        <i class="bi bi-cpu-fill"></i>
+                <p><i class="fas fa-location-dot"></i> Pune, Maharashtra, India</p>
+            </div>
 
-                        Personality AI
+        </div>
 
-                    </h3>
 
-                    <p class="footer-desc">
 
-                        AI Based Personality Prediction System
-                        using Artificial Intelligence,
-                        Machine Learning and Natural
-                        Language Processing (NLP).
+<!-- Middle -->
+<div class="footer-middle">
 
-                    </p>
+    <h3>Quick Links</h3>
 
-                    <div class="footer-contact">
+    <ul>
 
-                        <p>
+        <li>
+            <a href="{{ url_for('home') }}">
+                <i class="fas fa-house"></i> Home
+            </a>
+        </li>
 
-                            <i class="bi bi-envelope-fill"></i>
+        <li>
+            <a href="{{ url_for('about') }}">
+                <i class="fas fa-circle-info"></i> About
+            </a>
+        </li>
 
-                            yourmail@gmail.com
+        <li>
+            <a href="{{ url_for('login') }}">
+                <i class="fas fa-right-to-bracket"></i> Login
+            </a>
+        </li>
 
-                        </p>
+        <li>
+            <a href="{{ url_for('register') }}">
+                <i class="fas fa-user-plus"></i> Register
+            </a>
+        </li>
 
-                        <p>
+        <li>
+            <a href="{{ url_for('analyze') }}">
+                <i class="fas fa-chart-simple"></i> Analyze
+            </a>
+        </li>
 
-                            <i class="bi bi-telephone-fill"></i>
+      
 
-                            +91 XXXXX XXXXX
+    </ul>
 
-                        </p>
+</div>
 
-                        <p>
 
-                            <i class="bi bi-geo-alt-fill"></i>
 
-                            Pune, Maharashtra, India
+        <!-- Right -->
+        <div class="footer-right">
 
-                        </p>
+            <h2>
+                <i class="fas fa-users"></i>
+                Developed By
+            </h2>
+
+            <!-- Developer 1 -->
+
+            <div class="developer-card">
+
+                <div class="developer-info">
+
+                    <div class="avatar">
+                        👨‍💻
+                    </div>
+
+                    <div>
+
+                        <h3>Vaishnav Narute</h3>
+
+                        <span>Full Stack Developer</span>
+
+                        <div class="social">
+<!-- GitHub -->
+<a href="https://github.com/narutevaishnav"
+   target="_blank"
+   rel="noopener noreferrer">
+    <i class="fab fa-github"></i>
+</a>
+
+<!-- LinkedIn -->
+<a href="https://www.linkedin.com/in/vaishnav-narute-4775b5343"
+   target="_blank"
+   rel="noopener noreferrer">
+    <i class="fab fa-linkedin"></i>
+</a>
+
+<!-- X (Twitter) -->
+<a href="https://x.com/NaruteVais79593"
+   target="_blank"
+   rel="noopener noreferrer">
+    <i class="fab fa-x-twitter"></i>
+</a>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <!-- RIGHT -->
+            </div>
 
-                <div class="col-lg-6">
 
-                    <h3 class="footer-title">
 
-                        <i class="bi bi-people-fill"></i>
+            <!-- Developer 2 -->
 
-                        Developed By
+            <div class="developer-card">
 
-                    </h3>
+                <div class="developer-info">
 
-                    <!-- Developer 1 -->
-
-                    <div class="developer-card">
-
-                        <div>
-
-                            <h5>
-
-                                👨‍💻 Vaishnav Narute
-
-                            </h5>
-
-                            <span>
-
-                                Full Stack Developer
-
-                            </span>
-
-                        </div>
-
-                        <div class="developer-social">
-
-                            <a href="#">
-
-                                <i class="bi bi-github"></i>
-
-                            </a>
-
-                            <a href="#">
-
-                                <i class="bi bi-linkedin"></i>
-
-                            </a>
-
-                            <a href="#">
-
-                                <i class="bi bi-instagram"></i>
-
-                            </a>
-
-                            <a href="#">
-
-                                <i class="bi bi-twitter-x"></i>
-
-                            </a>
-
-                        </div>
-
+                    <div class="avatar">
+                        👨‍💻
                     </div>
 
-                    <!-- Developer 2 -->
+                    <div>
 
-                    <div class="developer-card">
+                        <h3>Aditya Sanap</h3>
 
-                        <div>
+                        <span>AI / ML Developer</span>
 
-                            <h5>
+                        <div class="social">
 
-                                👨‍💻 Aditya Sanap
+                            <a href="#"><i class="fab fa-github"></i></a>
 
-                            </h5>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
 
-                            <span>
-
-                                AI / ML Developer
-
-                            </span>
-
-                        </div>
-
-                        <div class="developer-social">
-
-                            <a href="#">
-
-                                <i class="bi bi-github"></i>
-
-                            </a>
-
-                            <a href="#">
-
-                                <i class="bi bi-linkedin"></i>
-
-                            </a>
-
-                            <a href="#">
-
-                                <i class="bi bi-instagram"></i>
-
-                            </a>
-
-                            <a href="#">
-
-                                <i class="bi bi-twitter-x"></i>
-
-                            </a>
+                            <a href="#"><i class="fab fa-x-twitter"></i></a>
 
                         </div>
 
@@ -566,18 +554,15 @@
 
         </div>
 
-        <hr class="footer-line">
+    </div>
 
-        <div class="footer-bottom text-center">
+    <hr>
 
-            © 2026 Personality AI. All Rights Reserved.
-
-        </div>
-
+    <div class="copyright">
+        © 2026 Personality AI. All Rights Reserved.
     </div>
 
 </footer>
-
 <!-- Bootstrap JS -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

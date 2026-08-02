@@ -350,3 +350,178 @@ body.light-mode .login-text{
 body.light-mode .login-text a{
     color:#6C63FF;
 }
+
+/* ==========================================
+   FOOTER (ALWAYS DARK)
+========================================== */
+
+body.light-mode .footer{
+
+    background:#060b18 !important;
+
+    color:#fff !important;
+
+}
+
+body.light-mode .footer h2,
+body.light-mode .footer h3,
+body.light-mode .footer p,
+body.light-mode .footer span,
+body.light-mode .footer li{
+
+    color:#fff !important;
+
+}
+
+body.light-mode .footer a{
+
+    color:#d5d5e8 !important;
+
+}
+
+body.light-mode .footer a:hover{
+
+    color:#7c5cff !important;
+
+}
+
+body.light-mode .footer i{
+
+    color:#7c5cff !important;
+
+}
+
+body.light-mode .developer-card{
+
+    background:#101a33 !important;
+
+    color:#fff !important;
+
+}
+/* ==========================================
+   DASHBOARD LIGHT MODE
+========================================== */
+
+body.light-mode{
+
+    background:#f3f6fb !important;
+
+    color:#222;
+
+}
+
+body.light-mode .dashboard-navbar{
+
+    background:#ffffff !important;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+body.light-mode .navbar-brand{
+
+    color:#222 !important;
+
+}
+
+body.light-mode .hero-card,
+body.light-mode .analysis-card,
+body.light-mode .trait-card,
+body.light-mode .overall-card,
+body.light-mode .glass-section,
+body.light-mode .insight-card,
+body.light-mode .action-card{
+
+    background:#ffffff !important;
+
+    color:#222 !important;
+
+    border:1px solid #e5e7eb !important;
+
+}
+
+body.light-mode .hero-title,
+body.light-mode .hero-subtitle,
+body.light-mode .trait-header h4,
+body.light-mode .section-title h2,
+body.light-mode .section-title h3,
+body.light-mode .analysis-card h5,
+body.light-mode .overall-card h3,
+body.light-mode .dashboard-footer h4{
+
+    color:#111 !important;
+
+}
+
+body.light-mode p,
+body.light-mode span{
+
+    color:#555 !important;
+
+}
+
+body.light-mode .premium-progress{
+
+    background:#dbe3ef !important;
+
+}
+
+body.light-mode .dashboard-footer{
+
+    background:#ffffff !important;
+
+    border-top:1px solid #ddd;
+
+}
+
+body.light-mode .footer-links a{
+
+    color:#222 !important;
+
+}
+body.light-mode #themeToggle,
+body.light-mode .btn-glass{
+
+    display:flex !important;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#222 !important;
+
+    background:#ffffff !important;
+
+    border:1px solid #dcdcdc !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+}
+
+body.light-mode #themeToggle i{
+
+    color:#222 !important;
+
+}
+.overall-circle{
+
+    width:170px;
+    height:170px;
+
+    margin:30px auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+    font-weight:700;
+
+    color:#fff;
+
+    background:linear-gradient(135deg,#4f46e5,#06b6d4);
+
+}

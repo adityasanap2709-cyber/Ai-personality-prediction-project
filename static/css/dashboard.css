@@ -1,39 +1,182 @@
-/* ==========================================
-   GLOBAL
-========================================== */
+/* ==========================================================
+                    GOOGLE FONT
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ==========================================================
+                    ROOT COLORS
+========================================================== */
+
+:root{
+
+    --bg:#0b1120;
+    --bg2:#111827;
+
+    --glass:rgba(255,255,255,.08);
+    --glass-border:rgba(255,255,255,.15);
+
+    --white:#ffffff;
+    --text:#d1d5db;
+
+    --primary:#4f46e5;
+    --primary2:#6366f1;
+
+    --green:#22c55e;
+    --blue:#3b82f6;
+    --purple:#8b5cf6;
+    --orange:#f59e0b;
+    --red:#ef4444;
+
+}
+
+
+/* ==========================================================
+                    RESET
+========================================================== */
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
 }
 
 body{
-    background:#08111F;
-    color:#fff;
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        var(--bg),
+        #101828,
+        #111827
+    );
+
+    color:var(--white);
+
     overflow-x:hidden;
+
+    position:relative;
+
+    min-height:100vh;
+
 }
 
-/* ==========================================
-   NAVBAR
-========================================== */
 
-.custom-navbar{
+/* ==========================================================
+                FLOATING BACKGROUND
+========================================================== */
 
-    background:rgba(8,17,31,.90);
+.bg-circle{
 
-    backdrop-filter:blur(10px);
+    position:fixed;
 
-    padding:15px 0;
+    border-radius:50%;
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    filter:blur(90px);
+
+    opacity:.28;
+
+    z-index:-1;
+
+}
+
+.bg1{
+
+    width:260px;
+    height:260px;
+
+    background:#4f46e5;
+
+    top:-80px;
+    left:-70px;
+
+}
+
+.bg2{
+
+    width:300px;
+    height:300px;
+
+    background:#0ea5e9;
+
+    top:35%;
+
+    right:-120px;
+
+}
+
+.bg3{
+
+    width:220px;
+    height:220px;
+
+    background:#9333ea;
+
+    bottom:-60px;
+
+    left:15%;
+
+}
+
+.bg4{
+
+    width:280px;
+    height:280px;
+
+    background:#14b8a6;
+
+    bottom:10%;
+
+    right:18%;
+
+}
+
+
+/* ==========================================================
+                    NAVBAR
+========================================================== */
+
+.dashboard-navbar{
+
+    position:sticky;
+
+    top:15px;
+
+    z-index:1000;
+
+    margin:20px auto;
+
+}
+
+.dashboard-navbar .container{
+
+    backdrop-filter:blur(18px);
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:15px 25px;
 
 }
 
 .navbar-brand{
 
-    font-size:28px;
+    color:#fff !important;
+
+    font-size:1.4rem;
 
     font-weight:700;
 
@@ -41,91 +184,193 @@ body{
 
 .navbar-brand i{
 
-    color:#6C63FF;
+    color:#60a5fa;
 
 }
 
-.nav-link{
+.btn-glass{
 
-    color:#ddd !important;
+    background:rgba(255,255,255,.08);
 
-    margin-left:20px;
+    color:#fff;
 
-    transition:.3s;
+    border:1px solid rgba(255,255,255,.15);
 
-}
+    border-radius:50px;
 
-.nav-link:hover,
-.nav-link.active{
+    padding:10px 22px;
 
-    color:#6C63FF !important;
-
-}
-
-
-/* ==========================================
-   HEADER
-========================================== */
-
-.dashboard-header{
-
-    padding:170px 0 70px;
-
-    text-align:center;
+    transition:.35s;
 
 }
 
-.dashboard-header h1{
+.btn-glass:hover{
 
-    font-size:55px;
+    background:rgba(255,255,255,.15);
 
-    font-weight:700;
+    color:#fff;
 
-}
-
-.dashboard-header p{
-
-    color:#c8cdd8;
-
-    font-size:18px;
-
-    margin-top:15px;
+    transform:translateY(-3px);
 
 }
 
 
-/* ==========================================
-   DASHBOARD SECTION
-========================================== */
+/* ==========================================================
+                    HERO
+========================================================== */
 
-.dashboard-section{
+.hero-section{
 
-    padding-bottom:100px;
+    padding:40px 0;
 
 }
 
+.hero-card{
 
-/* ==========================================
-   CARD
-========================================== */
+    position:relative;
 
-.dashboard-card{
-
-    background:#111C33;
-
-    border-radius:20px;
+    overflow:hidden;
 
     padding:35px;
 
-    border:1px solid rgba(255,255,255,.08);
+    border-radius:30px;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    background:rgba(255,255,255,.06);
 
-    transition:.4s;
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(25px);
 
 }
 
-.dashboard-card:hover{
+.hero-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    padding:2px;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        135deg,
+        #4f46e5,
+        #06b6d4,
+        #8b5cf6
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+.hero-title{
+
+    font-size:2.2rem;
+
+    font-weight:800;
+
+    line-height:1.2;
+
+}
+
+.text-gradient{
+
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #06b6d4,
+        #8b5cf6
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.hero-subtitle{
+
+    margin-top:10px;
+
+    font-size:1.2rem;
+
+    color:#cbd5e1;
+
+}
+
+.hero-text{
+
+    margin-top:12px;
+
+    color:#cbd5e1;
+
+    line-height:1.7;
+
+    font-size:.95rem;
+
+    max-width:720px;
+
+}
+
+.hero-buttons{
+
+    margin-top:22px;
+
+}
+
+.hero-buttons .btn{
+
+    padding:10px 24px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.hero-buttons .btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+
+/* ==========================================================
+                ANALYSIS CARD
+========================================================== */
+
+.analysis-card{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    backdrop-filter:blur(20px);
+
+    height:100%;
+
+    transition:.35s;
+
+}
+
+.analysis-card:hover{
 
     transform:translateY(-8px);
 
@@ -133,289 +378,1270 @@ body{
 
 }
 
-.dashboard-card h3{
-
-    margin-bottom:20px;
+.analysis-card h5{
 
     font-weight:700;
 
-}
-
-.dashboard-card p{
-
-    color:#c8cdd8;
-
-    margin-bottom:12px;
+    margin-bottom:15px;
 
 }
 
+.analysis-card p{
 
-/* ==========================================
-   RESULT
-========================================== */
+    margin-bottom:18px;
 
-.result-type{
-
-    font-size:65px;
-
-    font-weight:800;
-
-    color:#6C63FF;
+    color:#d1d5db;
 
 }
 
-.result-text{
+.analysis-card i{
 
-    font-size:20px;
+    color:#60a5fa;
 
-    color:#ddd;
+    margin-right:8px;
+
+}
+/* ==========================================================
+                    OCEAN CARDS
+========================================================== */
+
+.trait-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    transition:.4s ease;
+
+     height:auto;
+    min-height:170px;
 
 }
 
-.confidence{
+.trait-card::before{
 
-    font-size:60px;
+    content:"";
 
-    font-weight:800;
+    position:absolute;
 
-    color:#00D084;
+    inset:0;
+
+    padding:2px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.25),
+        transparent,
+        rgba(255,255,255,.12)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+.trait-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 45px rgba(0,0,0,.35);
 
 }
 
 
-/* ==========================================
-   PROGRESS BAR
-========================================== */
+/* ==========================================================
+                TRAIT COLORS
+========================================================== */
 
-.progress{
+.openness{
 
-    height:25px;
-
-    border-radius:20px;
-
-    background:#1A2744;
-
-    margin-bottom:20px;
+    border-left:5px solid #22c55e;
 
 }
 
-.progress-bar{
+.conscientiousness{
 
-    font-weight:600;
+    border-left:5px solid #3b82f6;
+
+}
+
+.extraversion{
+
+    border-left:5px solid #8b5cf6;
+
+}
+
+.agreeableness{
+
+    border-left:5px solid #f59e0b;
+
+}
+
+.neuroticism{
+
+    border-left:5px solid #ef4444;
 
 }
 
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
+/* ==========================================================
+                CARD HEADER
+========================================================== */
 
-@media(max-width:992px){
+.trait-header{
 
-.dashboard-header h1{
+    display:flex;
 
-font-size:42px;
+    justify-content:space-between;
 
-}
+    align-items:center;
 
-.result-type{
-
-font-size:50px;
+    margin-bottom:18px;
 
 }
 
-.confidence{
+.trait-header h4{
 
-font-size:45px;
-
-}
-
-}
-
-@media(max-width:576px){
-
-.dashboard-header{
-
-padding-top:140px;
-
-}
-
-.dashboard-header h1{
-
-font-size:32px;
-
-}
-
-.dashboard-card{
-
-padding:25px;
-
-}
-
-.result-type{
-
-font-size:40px;
-
-}
-
-.confidence{
-
-font-size:36px;
-
-}
-
-}
-/* ================= DARK / LIGHT MODE ================= */
-
-body.light-mode{
-    background:#f5f7fb;
-    color:#222;
-}
-
-body.light-mode .dashboard-card{
-    background:#ffffff;
-    color:#222;
-}
-
-body.light-mode .custom-navbar{
-    background:#ffffff !important;
-}
-
-body.light-mode .navbar-brand,
-body.light-mode .nav-link{
-    color:#222 !important;
-}
-
-body.light-mode .dashboard-header{
-    background:#e9f2ff;
-}
-
-/* ==========================================
-   Dashboard Statistics Cards
-========================================== */
-
-.dashboard-card{
-
-    transition:0.35s ease;
-
-}
-
-.dashboard-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 18px 35px rgba(0,0,0,.25);
-
-}
-
-.dashboard-card i{
-
-    transition:.35s;
-
-}
-
-.dashboard-card:hover i{
-
-    transform:scale(1.15) rotate(5deg);
-
-}
-
-.dashboard-card h2{
-
-    font-size:2rem;
+    font-size:1.25rem;
 
     font-weight:700;
 
-    margin-top:10px;
+    margin:0;
 
 }
 
-.dashboard-card h5{
+.trait-header span{
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+}
+
+
+/* ==========================================================
+                STARS
+========================================================== */
+
+.stars{
+
+    color:#FFD54A;
+
+    letter-spacing:3px;
+
+    font-size:1.15rem;
+
+    margin-bottom:18px;
+
+}
+
+
+/* ==========================================================
+                PROGRESS BAR
+========================================================== */
+
+.premium-progress{
+
+    height:12px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    margin-top:12px;
+
+}
+
+.premium-progress .progress-bar{
+
+    border-radius:50px;
+
+    transition:width 1.5s ease;
+
+}
+
+
+/* ==========================================================
+                SCORE TEXT
+========================================================== */
+
+.trait-card p{
+
+    margin-top:18px;
+
+    margin-bottom:0;
 
     font-size:1rem;
 
     font-weight:600;
 
-    color:#9ca3af;
+    color:#d1d5db;
+
+}
+
+
+/* ==========================================================
+                OVERALL CARD
+========================================================== */
+
+.overall-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #4f46e5,
+        #2563eb,
+        #06b6d4
+    );
+
+    border-radius:18px;
+
+    padding:20px;
+
+    text-align:center;
+
+    color:#ffffff;
+
+    height:100%;
+
+    transition:.4s;
+
+}
+
+.overall-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 25px 55px rgba(79,70,229,.45);
+
+}
+
+.overall-card h3{
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+.overall-circle{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.7rem;
+
+    font-weight:800;
+
+    color:#fff;
+
+    border:8px solid rgba(255,255,255,.22);
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+}
+
+.overall-card p{
+
+    margin-top:22px;
+
+    font-size:1rem;
+
+    color:#e5e7eb;
+
+}
+
+
+/* ==========================================================
+            HOVER GLOW BY TRAIT
+========================================================== */
+
+.openness:hover{
+
+    box-shadow:0 0 30px rgba(34,197,94,.35);
+
+}
+
+.conscientiousness:hover{
+
+    box-shadow:0 0 30px rgba(59,130,246,.35);
+
+}
+
+.extraversion:hover{
+
+    box-shadow:0 0 30px rgba(139,92,246,.35);
+
+}
+
+.agreeableness:hover{
+
+    box-shadow:0 0 30px rgba(245,158,11,.35);
+
+}
+
+.neuroticism:hover{
+
+    box-shadow:0 0 30px rgba(239,68,68,.35);
+
+}
+/* ==========================================================
+                    GLASS SECTION
+========================================================== */
+
+.glass-section{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:20px;
+
+    padding:22px;
+
+    transition:.35s ease;
+
+    height:100%;
+
+}
+
+.glass-section:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 22px 45px rgba(0,0,0,.35);
+
+}
+
+.glass-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    padding:2px;
+
+    border-radius:28px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(99,102,241,.7),
+        rgba(6,182,212,.6),
+        rgba(139,92,246,.6)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+
+/* ==========================================================
+                    SECTION TITLE
+========================================================== */
+
+.section-title{
+
+    margin-bottom:18px;
+
+}
+
+.section-title h2,
+.section-title h3{
+
+    font-weight:700;
+
+    color:#ffffff;
+
+    margin-bottom:10px;
+
+}
+
+.section-title p{
+
+    color:#cbd5e1;
+
+    margin-bottom:0;
+
+}
+
+.section-title i{
+
+    color:#60a5fa;
+
+    margin-right:8px;
+
+}
+
+
+
+
+
+/* ==========================================================
+                ANALYSIS INSIGHT CARDS
+========================================================== */
+
+.insight-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:18px;
+
+    backdrop-filter:blur(18px);
+
+    padding:20px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.insight-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.insight-card h5{
+
+    margin-top:18px;
+
+    color:#cbd5e1;
+
+    font-weight:600;
+
+}
+
+.insight-card h3{
 
     margin-top:15px;
 
-}
+    font-size:1.8rem;
 
-/* Statistics Icons */
-
-.bi-people-fill{
-
-    color:#0d6efd;
+    font-weight:700;
 
 }
 
-.bi-bullseye{
+.insight-card h2{
 
-    color:#198754;
+    margin-top:15px;
+
+    font-size:2.2rem;
+
+    font-weight:800;
+
+}
+
+.insight-card p{
+
+    color:#d1d5db;
+
+    margin-top:10px;
 
 }
 
-.bi-bar-chart-fill{
 
-    color:#ffc107;
+/* ==========================================================
+                    ICON BOX
+========================================================== */
 
-}
-/* ==========================================
-   DASHBOARD LIGHT MODE
-========================================== */
+.icon-box{
 
-body.light-mode .dashboard-header h1{
-    color:#111 !important;
-}
+    width:52px;
 
-body.light-mode .dashboard-header p{
-    color:#555 !important;
-}
+    height:52px;
 
-body.light-mode .dashboard-card{
-    background:#ffffff !important;
-    color:#222 !important;
-    border:1px solid #ddd;
-}
+    border-radius:50%;
 
-body.light-mode .dashboard-card h2,
-body.light-mode .dashboard-card h3,
-body.light-mode .dashboard-card h4,
-body.light-mode .dashboard-card h5,
-body.light-mode .dashboard-card h6{
-    color:#111 !important;
-}
+    display:flex;
 
-body.light-mode .dashboard-card p,
-body.light-mode .dashboard-card span,
-body.light-mode .dashboard-card label{
-    color:#555 !important;
-}
+    justify-content:center;
 
-body.light-mode .result-text{
-    color:#222 !important;
-}
+    align-items:center;
 
-body.light-mode .progress{
-    background:#dddddd;
-}
+    margin:auto;
 
-body.light-mode .progress-bar{
+    font-size:1.4rem;
+
     color:#fff;
+
 }
 
-body.light-mode .table{
-    color:#222 !important;
+.success .icon-box{
+
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+
 }
 
-body.light-mode .table td,
-body.light-mode .table th{
-    color:#222 !important;
+.primary .icon-box{
+
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+
 }
 
-body.light-mode .navbar-brand,
-body.light-mode .nav-link{
-    color:#222 !important;
+.danger .icon-box{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
 }
 
+
+/* ==========================================================
+                INSIGHT GLOW
+========================================================== */
+
+.success:hover{
+
+    box-shadow:0 0 35px rgba(34,197,94,.35);
+
+}
+
+.primary:hover{
+
+    box-shadow:0 0 35px rgba(59,130,246,.35);
+
+}
+
+.danger:hover{
+
+    box-shadow:0 0 35px rgba(239,68,68,.35);
+
+}
+/* ==========================================================
+                    QUICK ACTION CARDS
+========================================================== */
+
+.action-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:18px;
+
+    padding:22px 18px;
+
+    text-align:center;
+
+    transition:.35s ease;
+
+    height:100%;
+
+    cursor:pointer;
+
+}
+
+.action-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+}
+
+.action-card h4{
+
+    color:#fff;
+
+    font-weight:700;
+
+    margin-top:20px;
+
+}
+
+.action-card p{
+
+    color:#cbd5e1;
+
+    margin-top:10px;
+
+    margin-bottom:0;
+
+}
+
+.action-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    font-size:1.5rem;
+
+    color:#fff;
+
+    transition:.35s;
+
+}
+
+.action-card:hover .action-icon{
+
+    transform:scale(1.1) rotate(5deg);
+
+}
+
+.profile{
+
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+
+}
+
+.history{
+
+    background:linear-gradient(135deg,#8b5cf6,#7c3aed);
+
+}
+
+.download{
+
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+
+}
+
+.analyze{
+
+    background:linear-gradient(135deg,#f59e0b,#ea580c);
+
+}
+
+
+/* ==========================================================
+                    SCORE BADGE
+========================================================== */
+
+.score-badge{
+
+    width:110px;
+
+    height:110px;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:1.5rem;
+
+    font-weight:800;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #4f46e5,
+        #06b6d4
+    );
+
+    box-shadow:0 0 35px rgba(79,70,229,.45);
+
+}
+
+
+
+/*=========================
+        FOOTER
+=========================*/
+
+.footer{
+    background:#060b18;
+    padding:45px 6%;
+    color:#fff;
+    margin-top:40px;
+}
+.footer-container{
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr 1.15fr;
+    column-gap:30px;
+    padding:0 40px;
+    padding-top:40px;
+}
+
+/*=========================
+      LEFT
+=========================*/
+
+.footer-left h2{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:30px;
+    margin-bottom:18px;
+}
+
+.footer-left h2 i{
+    color:#7c5cff;
+}
+
+.footer-left p{
+    color:#c8c8d8;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.contact{
+    margin-top:22px;
+}
+
+.contact p{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:14px 0;
+    font-size:16px;
+}
+
+.contact i{
+    color:#7c5cff;
+    font-size:18px;
+}
+
+/*=========================
+      MIDDLE
+=========================*/
+
+.footer-middle ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.footer-middle li{
+    list-style:none;
+    margin:14px 0;
+}
+
+.footer-middle a{
+    text-decoration:none !important;
+    color:#d5d5e8 !important;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:17px;
+    transition:.3s;
+}
+
+.footer-middle a:hover{
+    color:#7c5cff !important;
+    transform:translateX(6px);
+}
+
+.footer-middle a i{
+    color:#7c5cff;
+    width:20px;
+}
+
+/*=========================
+      RIGHT
+=========================*/
+
+.footer-right{
+    margin-left:-35px;
+}
+
+.footer-right h2{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.footer-right h2 i{
+    color:#7c5cff;
+}
+
+.developer-card{
+    background:#101a33;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:18px;
+    width:100%;
+    margin-bottom:18px;
+    transition:.3s;
+}
+
+.developer-card:hover{
+    transform:translateY(-5px);
+    border-color:#7c5cff;
+    box-shadow:0 10px 25px rgba(124,92,255,.25);
+}
+
+.developer-info{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.avatar{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#7c5cff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    flex-shrink:0;
+}
+
+.developer-info h3{
+    font-size:22px;
+    margin-bottom:4px;
+}
+
+.developer-info span{
+    font-size:15px;
+    color:#bfbfd5;
+}
+
+/*=========================
+      SOCIAL
+=========================*/
+
+.social{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.social a{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#1b2745;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    transition:.3s;
+}
+
+.social a:hover{
+    background:#7c5cff;
+    transform:translateY(-3px);
+}
+
+/*=========================
+      COPYRIGHT
+=========================*/
+
+.footer hr{
+    border:none;
+    height:1px;
+    background:#20283f;
+    margin:25px 0 15px;
+}
+
+.copyright{
+    text-align:center;
+    color:#b5b5ca;
+    font-size:15px;
+}
+
+/*=========================
+      RESPONSIVE
+=========================*/
+
+@media(max-width:992px){
+
+.footer-container{
+    grid-template-columns:1fr;
+    row-gap:35px;
+}
+
+.footer{
+    text-align:center;
+}
+
+.footer-left h2,
+.footer-right h2{
+    justify-content:center;
+}
+
+.contact p{
+    justify-content:center;
+}
+
+.footer-middle{
+    align-items:center;
+}
+
+.footer-middle ul{
+    width:auto;
+}
+
+.footer-middle a{
+    justify-content:center;
+}
+
+.footer-right{
+    margin-left:0;
+}
+
+.developer-info{
+    flex-direction:column;
+    text-align:center;
+}
+
+.social{
+    justify-content:center;
+}
+
+}
+
+
+
+/* ==========================================================
+                    SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111827;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4f46e5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#6366f1;
+
+}
+
+
+/* ==========================================================
+                    ANIMATIONS
+========================================================== */
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.hero-card,
+.trait-card,
+.overall-card,
+.glass-section,
+.action-card,
+.insight-card{
+
+    animation:fadeUp .8s ease;
+
+}
+
+.bg-circle{
+
+    animation:float 8s ease-in-out infinite;
+
+}
+
+.bg2{
+
+    animation-delay:1s;
+
+}
+
+.bg3{
+
+    animation-delay:2s;
+
+}
+
+.bg4{
+
+    animation-delay:3s;
+
+}
+
+
+/* ==========================================================
+                    RESPONSIVE
+========================================================== */
+
+@media (max-width:992px){
+
+.hero-title{
+
+    font-size:2.3rem;
+
+}
+
+.hero-subtitle{
+
+    font-size:1.3rem;
+
+}
+
+.chart-box{
+
+    height:340px;
+
+}
+
+.footer-links{
+
+    justify-content:center;
+
+    margin-top:20px;
+
+}
+
+.dashboard-footer{
+
+    text-align:center;
+
+}
+
+.analysis-card{
+
+    margin-top:25px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.hero-card{
+
+    padding:30px;
+
+}
+
+.hero-buttons .btn{
+
+    width:100%;
+
+    margin-bottom:15px;
+
+}
+
+.hero-buttons .btn-outline-light{
+
+    margin-left:0 !important;
+
+}
+
+.trait-card{
+
+    padding:22px;
+
+}
+
+.glass-section{
+
+    padding:25px;
+
+}
+
+.chart-box{
+
+    height:300px;
+
+}
+
+.score-badge{
+
+    width:130px;
+
+    height:130px;
+
+    font-size:1.6rem;
+
+}
+
+.overall-circle{
+
+    width:140px;
+
+    height:140px;
+
+    font-size:2rem;
+
+}
+
+}
+
+@media (max-width:576px){
+
+.hero-title{
+
+    font-size:1.9rem;
+
+}
+
+.hero-subtitle{
+
+    font-size:1.1rem;
+
+}
+
+.navbar-brand{
+
+    font-size:1rem;
+
+}
+
+.dashboard-navbar .container{
+
+    padding:12px 16px;
+
+}
+
+.action-icon{
+
+    width:70px;
+
+    height:70px;
+
+    font-size:1.6rem;
+
+}
+
+.summary-item{
+
+    padding:12px;
+
+}
+
+.section-title h2,
+.section-title h3{
+
+    font-size:1.4rem;
+
+}
+
+}

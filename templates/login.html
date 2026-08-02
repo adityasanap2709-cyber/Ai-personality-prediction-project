@@ -66,14 +66,6 @@
 
     <div class="login-card">
 
-        <!-- Logo -->
-
-        <div class="logo-box">
-
-            <img src="{{ url_for('static', filename='images/logo.png') }}"
-                 class="logo">
-
-        </div>
 
         <h1>Welcome Back</h1>
 
@@ -162,42 +154,29 @@
 
         </div>
 
-        <!-- Google -->
+<div class="social-login">
 
-        <a href="{{ url_for('google_login') }}"
+    <a href="/login/github" class="social-btn">
+        <i class="bi bi-github"></i>
+        GitHub
+    </a>
 
-           class="google-btn">
+    <a href="/login/linkedin" class="social-btn">
+        <i class="bi bi-linkedin"></i>
+        LinkedIn
+    </a>
 
-            <img src="https://developers.google.com/identity/images/g-logo.png">
+    <a href="{{ url_for('google_login') }}" class="social-btn google-btn">
+    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+    Google
+    </a>
 
-            Continue with Google
+    <a href="/login/facebook" class="social-btn">
+        <i class="bi bi-facebook"></i>
+        Facebook
+    </a>
 
-        </a>
-
-        <!-- Facebook -->
-
-        <a href="#"
-
-           class="facebook-btn">
-
-            <i class="bi bi-facebook"></i>
-
-            Continue with Facebook
-
-        </a>
-
-        <!-- LinkedIn -->
-
-        <a href="#"
-
-           class="linkedin-btn">
-
-            <i class="bi bi-linkedin"></i>
-
-            Continue with LinkedIn
-
-        </a>
-
+</div>
         <!-- Register -->
 
         <div class="register-link">

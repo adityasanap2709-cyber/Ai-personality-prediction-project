@@ -1,53 +1,65 @@
-import sqlite3
+import os
 
-# Database Connection
-connection = sqlite3.connect("database.db")
-cursor = connection.cursor()
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-# ================= PREDICTIONS TABLE =================
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS predictions (
+from models import db
 
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+# -----------------------------
+# Load Environment Variables
+# -----------------------------
+load_dotenv()
 
-    username TEXT NOT NULL,
-    user_id INTEGER NOT NULL,
+DATABASE_URL = os.getenv("DATABASE_URL")
+print("DATABASE_URL =", DATABASE_URL)
+if not DATABASE_URL:
+    raise Exception(
+        "DATABASE_URL not found in .env"
+    )
 
-    personality_type TEXT NOT NULL,
-
-    confidence INTEGER NOT NULL,
-
-    introvert INTEGER,
-
-    thinking INTEGER,
-
-    judging INTEGER,
-
-    intuition INTEGER,
-
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
+# -----------------------------
+# SQLAlchemy Engine
+# -----------------------------
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300,
+    pool_size=5,
+    max_overflow=10,
+    pool_timeout=30,
+    pool_reset_on_return="commit"
 )
-""")
 
-# ================= USERS TABLE =================
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS users (
-
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-    name TEXT NOT NULL,
-
-    email TEXT UNIQUE NOT NULL,
-
-    password TEXT NOT NULL,
-
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
+SessionLocal = sessionmaker(
+    bind=engine,
+    autoflush=False,
+    autocommit=False
 )
-""")
 
-connection.commit()
-connection.close()
+## -----------------------------
+# Initialize Database
+# -----------------------------
+def init_db(app):
 
-print("✅ Database Created Successfully!")
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.init_app(app)
+
+    with app.app_context():
+
+        try:
+
+            db.create_all()
+
+            print("PostgreSQL Connected Successfully!")
+            print("Tables Created Successfully!")
+
+        except Exception as e:
+
+            print("DATABASE ERROR:")
+            print(repr(e))
+
+            raise
+        print("DATABASE_URL =", DATABASE_URL)

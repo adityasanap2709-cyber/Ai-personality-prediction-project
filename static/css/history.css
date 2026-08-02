@@ -1,6 +1,5 @@
 /* ==========================================
-   History Page CSS
-   AI Personality Prediction System
+            GLOBAL
 ========================================== */
 
 *{
@@ -10,31 +9,121 @@
 }
 
 body{
+
     font-family:'Poppins',sans-serif;
-    background:#0B1120;
+
+    background:#081120;
+
     color:#fff;
+
+    overflow-x:hidden;
+
 }
 
-/* ================= NAVBAR ================= */
+/* ==========================================
+        BACKGROUND
+========================================== */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    rgba(8,17,32,.82),
+    rgba(8,17,32,.82)
+    ),
+    url("../images/login-bg.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    z-index:-2;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:850px;
+
+    height:850px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:url("../images/logo.png") center no-repeat;
+
+    background-size:contain;
+
+    opacity:.06;
+
+    z-index:-1;
+
+}
+
+/* ==========================================
+            NAVBAR
+========================================== */
 
 .custom-navbar{
-    background:rgba(8,17,31,.92);
-    transition:.4s;
-}
 
-/* ================= HEADER ================= */
+    background:rgba(8,17,32,.82);
 
-.dashboard-header{
+    backdrop-filter:blur(16px);
 
-    padding:140px 20px 70px;
-
-    background:linear-gradient(135deg,#16213E,#0F3460);
-
-    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,.08);
 
 }
 
-.dashboard-header h1{
+.custom-navbar .nav-link{
+
+    color:#d7dce8;
+
+    margin-left:12px;
+
+    transition:.3s;
+
+}
+
+.custom-navbar .nav-link:hover{
+
+    color:#6F63FF;
+
+}
+
+.custom-navbar .nav-link.active{
+
+    color:#6F63FF;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+            HEADER
+========================================== */
+
+.history-header{
+
+    padding-top:120px;
+
+    padding-bottom:50px;
+
+}
+
+.history-header h1{
 
     font-size:48px;
 
@@ -44,40 +133,96 @@ body{
 
 }
 
-.dashboard-header p{
+.history-header p{
+
+    color:#c8d1df;
 
     font-size:18px;
 
-    color:#d8d8d8;
+}
+/* ==========================================
+        HISTORY SECTION
+========================================== */
+
+.history-section{
+
+    padding-bottom:80px;
 
 }
 
-/* ================= SECTION ================= */
+.history-card{
 
-.dashboard-section{
+    background:rgba(18,28,46,.60);
 
-    padding:60px 0;
+    backdrop-filter:blur(18px);
 
-}
+    -webkit-backdrop-filter:blur(18px);
 
-/* ================= CARD ================= */
+    border:1px solid rgba(255,255,255,.08);
 
-.dashboard-card{
-
-    background:#16213E;
-
-    border-radius:18px;
+    border-radius:24px;
 
     padding:35px;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    box-shadow:
+    0 0 30px rgba(63,124,247,.20),
+    0 0 60px rgba(138,73,255,.10);
 
 }
-/* ================= TABLE ================= */
+
+.history-card h3{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================================
+            SEARCH BOX
+========================================== */
+
+#searchInput{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    color:#fff;
+
+    height:52px;
+
+    border-radius:12px;
+
+}
+
+#searchInput::placeholder{
+
+    color:#c8d1df;
+
+}
+
+#searchInput:focus{
+
+    border:1px solid #6F63FF;
+
+    box-shadow:0 0 15px rgba(111,99,255,.35);
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+}
+
+/* ==========================================
+              TABLE
+========================================== */
 
 .table{
 
-    border-radius:12px;
+    border-radius:18px;
 
     overflow:hidden;
 
@@ -85,55 +230,76 @@ body{
 
 .table thead{
 
-    background:#0F3460;
+    background:#6F63FF;
 
 }
 
-.table th{
-
-    color:#fff;
-
-    font-weight:600;
+.table thead th{
 
     border:none;
 
-    padding:15px;
+    color:#fff;
+
+    padding:18px;
+
+    font-weight:600;
 
 }
 
-.table td{
+.table tbody td{
 
-    vertical-align:middle;
+    padding:18px;
 
     border-color:rgba(255,255,255,.08);
 
-    padding:15px;
+    vertical-align:middle;
 
 }
 
-.table tbody tr{
+.table-hover tbody tr{
 
     transition:.3s;
 
 }
 
-.table tbody tr:hover{
+.table-hover tbody tr:hover{
 
-    background:rgba(255,255,255,.08);
+    background:rgba(111,99,255,.12);
 
 }
 
-/* ================= BUTTON ================= */
+/* ==========================================
+            BADGES
+========================================== */
 
-.btn-primary{
+.badge{
 
-    padding:12px 30px;
+    padding:8px 14px;
+
+    font-size:14px;
 
     border-radius:30px;
 
     font-weight:600;
 
-    transition:.3s;
+}
+/* ==========================================
+            BACK BUTTON
+========================================== */
+
+.btn-primary{
+
+    background:linear-gradient(90deg,#3F7CF7,#8A49FF);
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px 35px;
+
+    font-weight:600;
+
+    transition:.35s;
 
 }
 
@@ -141,30 +307,234 @@ body{
 
     transform:translateY(-3px);
 
-    box-shadow:0 8px 20px rgba(13,110,253,.35);
+    box-shadow:0 12px 25px rgba(111,99,255,.35);
 
 }
 
-/* ================= RESPONSIVE ================= */
+/* ==========================================
+              FOOTER
+========================================== */
+
+.footer{
+
+    padding:30px 0;
+
+    color:#c8d1df;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    margin-top:60px;
+
+}
+
+.footer p{
+
+    margin:0;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+            ANIMATION
+========================================== */
+
+.history-card{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================================
+            LIGHT MODE
+========================================== */
+
+body.light-mode{
+
+    background:#eef3fb;
+
+    color:#222;
+
+}
+
+body.light-mode .history-card{
+
+    background:rgba(255,255,255,.85);
+
+    color:#222;
+
+}
+
+body.light-mode .history-header p{
+
+    color:#555;
+
+}
+
+body.light-mode #searchInput{
+
+    background:#fff;
+
+    color:#222;
+
+    border:1px solid #ddd;
+
+}
+
+body.light-mode #searchInput::placeholder{
+
+    color:#666;
+
+}
+
+body.light-mode .table{
+
+    color:#222;
+
+}
+
+body.light-mode .table tbody tr:hover{
+
+    background:#eef3ff;
+
+}
+
+body.light-mode .footer{
+
+    color:#555;
+
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.history-header h1{
+
+font-size:38px;
+
+}
+
+.history-card{
+
+padding:25px;
+
+}
+
+.table{
+
+font-size:14px;
+
+}
+
+}
 
 @media(max-width:768px){
 
-    .dashboard-header h1{
+.history-header{
 
-        font-size:34px;
+padding-top:100px;
 
-    }
+}
 
-    .dashboard-card{
+.history-header h1{
 
-        padding:20px;
+font-size:30px;
 
-    }
+}
 
-    .table{
+.history-header p{
 
-        font-size:14px;
+font-size:15px;
 
-    }
+}
+
+.history-card{
+
+padding:20px;
+
+}
+
+#searchInput{
+
+margin-bottom:20px;
+
+}
+
+.table{
+
+font-size:13px;
+
+}
+
+.btn-primary{
+
+width:100%;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.history-card{
+
+padding:15px;
+
+border-radius:18px;
+
+}
+
+.history-card h3{
+
+font-size:22px;
+
+}
+
+.table thead th,
+
+.table tbody td{
+
+padding:12px;
+
+font-size:12px;
+
+}
+
+.badge{
+
+font-size:11px;
+
+padding:6px 10px;
+
+}
+
+.footer{
+
+font-size:13px;
+
+}
 
 }
