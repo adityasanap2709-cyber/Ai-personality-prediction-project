@@ -1,65 +1,62 @@
-
 // ==========================================
-// History Page JavaScript
-// AI Personality Prediction System
+// HISTORY PAGE JAVASCRIPT
 // ==========================================
 
+document.addEventListener("DOMContentLoaded", () => {
 
-// ================================
-// Navbar Scroll Effect
-// ================================
+    // ==========================================
+    // SEARCH HISTORY
+    // ==========================================
 
-window.addEventListener("scroll", function () {
+    const searchInput = document.getElementById("searchInput");
 
-    const navbar = document.querySelector(".custom-navbar");
+    if (searchInput) {
 
-    if (navbar) {
+        searchInput.addEventListener("keyup", function () {
 
-        if (window.scrollY > 50) {
+            const value = this.value.toLowerCase();
 
-            navbar.style.background = "#08111F";
-            navbar.style.boxShadow = "0 8px 25px rgba(0,0,0,.35)";
+            const rows = document.querySelectorAll("tbody tr");
 
-        } else {
+            rows.forEach((row) => {
 
-            navbar.style.background = "rgba(8,17,31,.90)";
-            navbar.style.boxShadow = "none";
+                const text = row.innerText.toLowerCase();
 
-        }
+                row.style.display = text.includes(value) ? "" : "none";
+
+            });
+
+        });
 
     }
 
-});
+    // ==========================================
+    // DELETE CONFIRMATION
+    // ==========================================
 
+    const deleteButtons = document.querySelectorAll(".delete-btn");
 
-// ================================
-// Back Button Hover Effect
-// ================================
+    deleteButtons.forEach((btn) => {
 
-const button = document.querySelector(".btn-primary");
+        btn.addEventListener("click", function (e) {
 
-if (button) {
+            const ok = confirm(
+                "Are you sure you want to delete this prediction?"
+            );
 
-    button.addEventListener("mouseenter", function () {
+            if (!ok) {
 
-        button.style.transform = "translateY(-4px)";
+                e.preventDefault();
+
+            }
+
+        });
 
     });
 
-    button.addEventListener("mouseleave", function () {
-
-        button.style.transform = "translateY(0px)";
-
-    });
-
-}
-
-
-// ================================
-// Table Animation
-// ================================
-
-window.addEventListener("load", function () {
+    // ==========================================
+    // TABLE FADE ANIMATION
+    // ==========================================
 
     const rows = document.querySelectorAll("tbody tr");
 
@@ -70,92 +67,59 @@ window.addEventListener("load", function () {
 
         setTimeout(() => {
 
-            row.style.transition = "all 0.5s ease";
-            row.style.opacity = "1";
-            row.style.transform = "translateY(0)";
+            row.style.transition = "0.5s ease";
 
-        }, index * 150);
+            row.style.opacity = "1";
+            row.style.transform = "translateY(0px)";
+
+        }, index * 100);
 
     });
 
-});
+    // ==========================================
+    // ACTION BUTTON HOVER
+    // ==========================================
 
+    const buttons = document.querySelectorAll(".action-btn");
 
-// ================================
-// Search History
-// ================================
+    buttons.forEach((btn) => {
 
-const searchInput = document.getElementById("searchInput");
+        btn.addEventListener("mouseenter", () => {
 
-if (searchInput) {
+            btn.style.transform = "scale(1.12)";
 
-    searchInput.addEventListener("keyup", function () {
+        });
 
-        const filter = this.value.toLowerCase();
+        btn.addEventListener("mouseleave", () => {
 
-        const rows = document.querySelectorAll("tbody tr");
-
-        rows.forEach(function (row) {
-
-            const username = row.cells[1].textContent.toLowerCase();
-
-            if (username.includes(filter)) {
-
-                row.style.display = "";
-
-            } else {
-
-                row.style.display = "none";
-
-            }
+            btn.style.transform = "scale(1)";
 
         });
 
     });
 
-}
+    // ==========================================
+    // SEARCH CLEAR ON ESC
+    // ==========================================
 
+    if (searchInput) {
 
-// ================================
-// Delete Row (Temporary)
-// ================================
+        searchInput.addEventListener("keydown", function (e) {
 
-function deleteRow(button) {
+            if (e.key === "Escape") {
 
-    const confirmDelete = confirm("Are you sure you want to delete this record?");
+                this.value = "";
 
-    if (confirmDelete) {
+                document.querySelectorAll("tbody tr").forEach((row) => {
 
-        button.closest("tr").remove();
+                    row.style.display = "";
 
-        alert("Record Deleted Successfully!");
+                });
+
+            }
+
+        });
 
     }
 
-}
-
-
-// ================================
-// Page Fade Animation
-// ================================
-
-window.addEventListener("load", function () {
-
-    document.body.style.opacity = "0";
-
-    setTimeout(function () {
-
-        document.body.style.transition = "opacity .8s";
-        document.body.style.opacity = "1";
-
-    }, 100);
-
 });
-
-
-// ================================
-// Console
-// ================================
-
-console.log("History Page Loaded Successfully 🚀");
-

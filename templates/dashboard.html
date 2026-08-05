@@ -3,100 +3,108 @@
 
 <head>
       <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-      <link rel="stylesheet"
-      href="{{ url_for('static', filename='css/theme.css') }}">    
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>Dashboard | AI Personality Prediction</title>
 
-    <title>Dashboard | AI Personality Prediction</title>
+<!-- Bootstrap -->
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!-- Bootstrap Icons -->
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Dashboard CSS -->
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/dashboard.css') }}">
+<!-- Google Font -->
 
-    <!-- Chart JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- Theme -->
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/theme.css') }}">
+
+<!-- Dashboard CSS -->
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<!-- Chart -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
 <body>
 
-<!-- ======================================================
-                    FLOATING BACKGROUND
-====================================================== -->
+<!-- ==========================================
+BACKGROUND
+========================================== -->
 
 <div class="bg-circle bg1"></div>
 <div class="bg-circle bg2"></div>
 <div class="bg-circle bg3"></div>
 <div class="bg-circle bg4"></div>
 
-<!-- ======================================================
-                        NAVBAR
-====================================================== -->
+<!-- ==========================================
+NAVBAR
+========================================== -->
 
 <nav class="navbar navbar-expand-lg dashboard-navbar">
 
-    <div class="container">
+<div class="container">
 
-        <a class="navbar-brand fw-bold"
-           href="{{ url_for('dashboard') }}">
+<a class="navbar-brand fw-bold"
+href="{{ url_for('dashboard') }}">
 
-            <i class="bi bi-cpu-fill me-2"></i>
+<i class="bi bi-cpu-fill me-2"></i>
 
-            AI Personality Prediction
+AI Personality Prediction
 
-        </a>
+</a>
 
-        <div class="d-flex">
+<div class="d-flex align-items-center">
 
-            <a href="{{ url_for('profile') }}"
-               class="btn btn-glass me-2">
+<a href="{{ url_for('profile') }}"
+class="btn btn-glass me-2">
 
-                <i class="bi bi-person-circle me-1"></i>
+<i class="bi bi-person-circle me-1"></i>
 
-                Profile
+Profile
 
-            </a>
-   <button id="themeToggle"
-        class="btn btn-glass me-2">
+</a>
 
-    <i class="bi bi-moon-fill"></i>
+<button id="themeToggle"
+class="btn btn-glass me-2">
+
+<i class="bi bi-moon-fill"></i>
 
 </button>
 
-            <a href="{{ url_for('logout') }}"
-               class="btn btn-danger rounded-pill px-4">
+<a href="{{ url_for('logout') }}"
+class="btn btn-danger rounded-pill px-4">
 
-                Logout
+Logout
 
-            </a>
+</a>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </nav>
 
-<!-- ======================================================
-                    HERO SECTION
-====================================================== -->
+<!-- ==========================================
+HERO SECTION
+========================================== -->
 
 <section class="hero-section">
 
@@ -118,27 +126,30 @@ Latest AI Analysis
 
 <h1 class="hero-title mt-4">
 
-👋 Welcome Back,
+👋 Welcome,
 
 <span class="text-gradient">
 
-{{ user.name if user else "User" }}
+{{ user.name }}
 
 </span>
 
 </h1>
 
-<h2 class="hero-subtitle">
+<p class="hero-subtitle">
 
-AI Based Personality Prediction System
+AI Based Personality Prediction using the
+Big Five (OCEAN) Personality Model.
 
-</h2>
+</p>
 
 <p class="hero-text">
 
-Your personality has been analysed using the
-Big Five (OCEAN) Personality Model powered by
-Artificial Intelligence and Machine Learning.
+Your personality has been analysed using a
+fine-tuned BERT model. The AI predicts your
+OCEAN personality traits from your social
+media text and provides detailed personality
+insights.
 
 </p>
 
@@ -172,35 +183,35 @@ Download Report
 
 <div class="analysis-card">
 
-<h5>
+<h4>
 
-Latest Analysis
+Latest Prediction
 
-</h5>
+</h4>
 
 <hr>
 
 <p>
 
-<i class="bi bi-calendar3"></i>
+<i class="bi bi-calendar-event me-2"></i>
 
-{{ result.created_at.strftime('%d %b %Y') if result and result.created_at else "Today" }}
-
-</p>
-
-<p>
-
-<i class="bi bi-person-circle"></i>
-
-@{{ user.username if user else "username" }}
+{{ result.created_at.strftime('%d %b %Y') }}
 
 </p>
 
 <p>
 
-<i class="bi bi-stars"></i>
+<i class="bi bi-person-circle me-2"></i>
 
-AI Generated Result
+{{ result.username }}
+
+</p>
+
+<p>
+
+<i class="bi bi-stars me-2"></i>
+
+AI Analysis Completed
 
 </p>
 
@@ -216,46 +227,81 @@ AI Generated Result
 
 </section>
 
-<!-- ======================================================
-                    OCEAN TRAITS
-====================================================== -->
+<!-- ==========================================
+PART 1 END
+========================================== -->
+<!-- ==========================================
+OCEAN PERSONALITY TRAITS
+========================================== -->
 
 <section class="container py-5">
 
+<div class="section-title text-center mb-5">
+
+<h2>
+
+🧠 OCEAN Personality Traits
+
+</h2>
+
+<p>
+
+Your personality scores predicted using the
+Big Five Personality Model.
+
+</p>
+
+</div>
+
 <div class="row g-4">
 
-<!-- OPENNESS -->
+<!-- ==========================
+OPENNESS
+========================== -->
 
-<div class="col-lg-4 col-md-6">
+<div class="col-lg-6">
 
-<div class="trait-card openness">
+<div class="trait-card openness-card">
 
-<div class="trait-header">
+<div class="d-flex justify-content-between align-items-center">
 
-<h4>🟢 Openness</h4>
+<h3>🟢 Openness</h3>
 
-<span>{{ result.openness|round(1) }}/5</span>
+<span class="score-badge">
+
+{{ prediction.Openness.score }}/5
+
+</span>
 
 </div>
 
-<div class="stars">
-
-★★★★★
-
-</div>
-
-<div class="progress premium-progress">
+<div class="progress mt-4">
 
 <div class="progress-bar bg-success"
-style="width:{{ (result.openness*20)|round(0) }}%;">
+
+style="width:{{ prediction.Openness.score*20 }}%;">
 
 </div>
 
 </div>
 
-<p class="mt-3">
+<div class="mt-4">
 
-{{ result.openness|round(2) }}
+<h6>
+
+Level :
+
+<span class="trait-level">
+
+{{ prediction.Openness.level }}
+
+</span>
+
+</h6>
+
+<p class="trait-description">
+
+{{ prediction.Openness.description }}
 
 </p>
 
@@ -263,211 +309,230 @@ style="width:{{ (result.openness*20)|round(0) }}%;">
 
 </div>
 
-<!-- CONSCIENTIOUSNESS -->
+</div>
 
-<div class="col-lg-4 col-md-6">
+<!-- ==========================
+CONSCIENTIOUSNESS
+========================== -->
 
-<div class="trait-card conscientiousness">
+<div class="col-lg-6">
 
-<div class="trait-header">
+<div class="trait-card conscientious-card">
 
-<h4>🔵 Conscientiousness</h4>
+<div class="d-flex justify-content-between align-items-center">
 
-<span>{{ result.conscientiousness|round(1) }}/5</span>
+<h3>🔵 Conscientiousness</h3>
+
+<span class="score-badge">
+
+{{ prediction.Conscientiousness.score }}/5
+
+</span>
 
 </div>
 
-<div class="stars">
-
-★★★★★
-
-</div>
-
-<div class="progress premium-progress">
+<div class="progress mt-4">
 
 <div class="progress-bar bg-primary"
-style="width:{{ (result.conscientiousness*20)|round(0) }}%;">
+
+style="width:{{ prediction.Conscientiousness.score*20 }}%;">
 
 </div>
 
 </div>
 
-<p class="mt-3">
+<div class="mt-4">
 
-{{ result.conscientiousness|round(2) }}
+<h6>
+
+Level :
+
+<span class="trait-level">
+
+{{ prediction.Conscientiousness.level }}
+
+</span>
+
+</h6>
+
+<p class="trait-description">
+
+{{ prediction.Conscientiousness.description }}
 
 </p>
 
 </div>
 
 </div>
-<!-- ======================================================
-                EXTRAVERSION
-====================================================== -->
-
-<div class="col-lg-4 col-md-6">
-
-    <div class="trait-card extraversion">
-
-        <div class="trait-header">
-
-            <h4>🟣 Extraversion</h4>
-
-            <span>{{ result.extraversion|round(1) }}/5</span>
-
-        </div>
-
-        <div class="stars">
-
-            ★★★★★
-
-        </div>
-
-        <div class="progress premium-progress">
-
-            <div class="progress-bar"
-
-                 style="width:{{ (result.extraversion*20)|round(0) }}%;
-                 background:#8b5cf6;">
-
-            </div>
-
-        </div>
-
-        <p class="mt-3">
-
-            {{ result.extraversion|round(2) }}
-
-        </p>
-
-    </div>
 
 </div>
 
+<!-- ==========================
+EXTRAVERSION
+========================== -->
 
-<!-- ======================================================
-                AGREEABLENESS
-====================================================== -->
+<div class="col-lg-6">
 
-<div class="col-lg-4 col-md-6">
+<div class="trait-card extraversion-card">
 
-    <div class="trait-card agreeableness">
+<div class="d-flex justify-content-between align-items-center">
 
-        <div class="trait-header">
+<h3>🟣 Extraversion</h3>
 
-            <h4>🟠 Agreeableness</h4>
+<span class="score-badge">
 
-            <span>{{ result.agreeableness|round(1) }}/5</span>
+{{ prediction.Extraversion.score }}/5
 
-        </div>
-
-        <div class="stars">
-
-            ★★★★★
-
-        </div>
-
-        <div class="progress premium-progress">
-
-            <div class="progress-bar bg-warning"
-
-                 style="width:{{ (result.agreeableness*20)|round(0) }}%;">
-
-            </div>
-
-        </div>
-
-        <p class="mt-3">
-
-            {{ result.agreeableness|round(2) }}
-
-        </p>
-
-    </div>
+</span>
 
 </div>
 
+<div class="progress mt-4">
 
-<!-- ======================================================
-                NEUROTICISM
-====================================================== -->
+<div class="progress-bar"
 
-<div class="col-lg-4 col-md-6">
-
-    <div class="trait-card neuroticism">
-
-        <div class="trait-header">
-
-            <h4>🔴 Neuroticism</h4>
-
-            <span>{{ result.neuroticism|round(1) }}/5</span>
-
-        </div>
-
-        <div class="stars">
-
-            ★★★★★
-
-        </div>
-
-        <div class="progress premium-progress">
-
-            <div class="progress-bar bg-danger"
-
-                 style="width:{{ (result.neuroticism*20)|round(0) }}%;">
-
-            </div>
-
-        </div>
-
-        <p class="mt-3">
-
-            {{ result.neuroticism|round(2) }}
-
-        </p>
-
-    </div>
+style="background:#7c3aed;
+width:{{ prediction.Extraversion.score*20 }}%;">
 
 </div>
 
+</div>
 
-<!-- ======================================================
-                OVERALL AI SCORE
-====================================================== -->
+<div class="mt-4">
 
-<div class="col-lg-4 col-md-6">
+<h6>
 
-    <div class="overall-card">
+Level :
 
-        <h3>
+<span class="trait-level">
 
-            Overall AI Score
+{{ prediction.Extraversion.level }}
 
-        </h3>
+</span>
 
-        <div class="overall-circle">
+</h6>
 
-            {{
-            (
-            (
-            result.openness +
-            result.conscientiousness +
-            result.extraversion +
-            result.agreeableness +
-            result.neuroticism
-            ) / 5
-            )|round(1)
-            }}/5
+<p class="trait-description">
 
-        </div>
+{{ prediction.Extraversion.description }}
 
-        <p class="mt-4">
+</p>
 
-            Overall Personality Rating
+</div>
 
-        </p>
+</div>
 
-    </div>
+</div>
+
+<!-- ==========================
+AGREEABLENESS
+========================== -->
+
+<div class="col-lg-6">
+
+<div class="trait-card agreeableness-card">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<h3>🟠 Agreeableness</h3>
+
+<span class="score-badge">
+
+{{ prediction.Agreeableness.score }}/5
+
+</span>
+
+</div>
+
+<div class="progress mt-4">
+
+<div class="progress-bar bg-warning"
+
+style="width:{{ prediction.Agreeableness.score*20 }}%;">
+
+</div>
+
+</div>
+
+<div class="mt-4">
+
+<h6>
+
+Level :
+
+<span class="trait-level">
+
+{{ prediction.Agreeableness.level }}
+
+</span>
+
+</h6>
+
+<p class="trait-description">
+
+{{ prediction.Agreeableness.description }}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ==========================
+NEUROTICISM
+========================== -->
+
+<div class="col-lg-12">
+
+<div class="trait-card neuroticism-card">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<h3>🔴 Neuroticism</h3>
+
+<span class="score-badge">
+
+{{ prediction.Neuroticism.score }}/5
+
+</span>
+
+</div>
+
+<div class="progress mt-4">
+
+<div class="progress-bar bg-danger"
+
+style="width:{{ prediction.Neuroticism.score*20 }}%;">
+
+</div>
+
+</div>
+
+<div class="mt-4">
+
+<h6>
+
+Level :
+
+<span class="trait-level">
+
+{{ prediction.Neuroticism.level }}
+
+</span>
+
+</h6>
+
+<p class="trait-description">
+
+{{ prediction.Neuroticism.description }}
+
+</p>
+
+</div>
+
+</div>
 
 </div>
 
@@ -475,123 +540,273 @@ style="width:{{ (result.conscientiousness*20)|round(0) }}%;">
 
 </section>
 
+<!-- ==========================================
+PART 2 END
+========================================== -->
+<!-- ==========================================
+OVERALL ANALYSIS
+========================================== -->
 
+<section class="container py-5">
 
-<!-- ======================================================
-                ANALYSIS INSIGHTS
-====================================================== -->
+<div class="section-title text-center mb-5">
+
+<h2>
+
+📊 Overall Personality Analysis
+
+</h2>
+
+<p>
+
+AI generated personality insights based on the
+Big Five (OCEAN) Personality Model.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<!-- ================= Overall Score ================= -->
+
+<div class="col-lg-4">
+
+<div class="analysis-box overall-box">
+
+<div class="analysis-icon">
+
+<i class="bi bi-stars"></i>
+
+</div>
+
+<h4>
+
+Overall Score
+
+</h4>
+
+<h1>
+
+{{ overall_score }}/5
+
+</h1>
+
+<p>
+
+Average score across all five personality traits.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ================= Highest Trait ================= -->
+
+<div class="col-lg-4">
+
+<div class="analysis-box highest-box">
+
+<div class="analysis-icon">
+
+<i class="bi bi-arrow-up-circle-fill"></i>
+
+</div>
+
+<h4>
+
+Highest Trait
+
+</h4>
+
+<h3>
+
+{{ highest_trait }}
+
+</h3>
+
+<h2>
+
+{{ highest_score }}/5
+
+</h2>
+
+<p>
+
+Your strongest personality characteristic.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ================= Lowest Trait ================= -->
+
+<div class="col-lg-4">
+
+<div class="analysis-box lowest-box">
+
+<div class="analysis-icon">
+
+<i class="bi bi-arrow-down-circle-fill"></i>
+
+</div>
+
+<h4>
+
+Lowest Trait
+
+</h4>
+
+<h3>
+
+{{ lowest_trait }}
+
+</h3>
+
+<h2>
+
+{{ lowest_score }}/5
+
+</h2>
+
+<p>
+
+Personality trait with the lowest score.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+RADAR CHART + SUMMARY
+========================================== -->
 
 <section class="container pb-5">
 
 <div class="row g-4">
 
-<!-- HIGHEST TRAIT -->
+<!-- ================= Radar Chart ================= -->
 
-<div class="col-lg-4">
+<div class="col-lg-6">
 
-<div class="insight-card success">
+<div class="glass-card chart-card">
 
-<div class="icon-box">
+<h3 class="mb-4">
 
-<i class="bi bi-graph-up-arrow"></i>
-
-</div>
-
-<h5>
-
-Highest Trait
-
-</h5>
-
-<h3>
-
-🟢 Openness
+📈 Personality Radar Chart
 
 </h3>
 
-<h2>
+<div class="chart-container">
 
-{{ result.openness|round(1) }}/5
-
-</h2>
+<canvas id="oceanChart"></canvas>
 
 </div>
 
 </div>
 
-<!-- LOWEST TRAIT -->
-
-<div class="col-lg-4">
-
-<div class="insight-card danger">
-
-<div class="icon-box">
-
-<i class="bi bi-graph-down-arrow"></i>
-
 </div>
 
-<h5>
+<!-- ================= AI SUMMARY ================= -->
 
-Lowest Trait
+<div class="col-lg-6">
 
-</h5>
+<div class="glass-card summary-card">
 
-<h3>
+<h3 class="mb-4">
 
-🔴 Neuroticism
+🤖 AI Personality Summary
 
 </h3>
 
-<h2>
-
-{{ result.neuroticism|round(1) }}/5
-
-</h2>
-
-</div>
-
-</div>
-
-<!-- OVERALL -->
-
-<div class="col-lg-4">
-
-<div class="insight-card primary">
-
-<div class="icon-box">
-
-<i class="bi bi-stars"></i>
-
-</div>
-
-<h5>
-
-Overall Rating
-
-</h5>
-
-<h2>
-
-{{
-(
-(
-result.openness+
-result.conscientiousness+
-result.extraversion+
-result.agreeableness+
-result.neuroticism
-)/5
-)|round(1)
-}}/5
-
-</h2>
+<div class="summary-box">
 
 <p>
 
-AI Personality Score
+{{ prediction.summary }}
 
 </p>
+
+</div>
+
+<hr>
+
+<div class="row mt-4">
+
+<div class="col-6">
+
+<div class="mini-card">
+
+<h6>
+
+Highest
+
+</h6>
+
+<h5>
+
+{{ highest_trait }}
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="col-6">
+
+<div class="mini-card">
+
+<h6>
+
+Lowest
+
+</h6>
+
+<h5>
+
+{{ lowest_trait }}
+
+</h5>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row mt-3">
+
+<div class="col-12">
+
+<div class="mini-card">
+
+<h6>
+
+Overall Personality Score
+
+</h6>
+
+<h3>
+
+{{ overall_score }}/5
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -601,10 +816,12 @@ AI Personality Score
 
 </section>
 
-<!-- ======== PART 2B END ======== -->
- <!-- ======================================================
-                    QUICK ACTIONS
-====================================================== -->
+<!-- ==========================================
+PART 3 END
+========================================== -->
+<!-- ==========================================
+QUICK ACTIONS
+========================================== -->
 
 <section class="container pb-5">
 
@@ -618,7 +835,7 @@ AI Personality Score
 
 <p>
 
-Access your most frequently used features
+Access your frequently used features.
 
 </p>
 
@@ -626,106 +843,7 @@ Access your most frequently used features
 
 <div class="row g-4">
 
-<!-- PROFILE -->
-
-<div class="col-lg-3 col-md-6">
-
-<a href="{{ url_for('profile') }}"
-class="text-decoration-none">
-
-<div class="action-card">
-
-<div class="action-icon profile">
-
-<i class="bi bi-person-circle"></i>
-
-</div>
-
-<h4>
-
-Profile
-
-</h4>
-
-<p>
-
-View your profile details
-
-</p>
-
-</div>
-
-</a>
-
-</div>
-
-<!-- HISTORY -->
-
-<div class="col-lg-3 col-md-6">
-
-<a href="{{ url_for('history') }}"
-class="text-decoration-none">
-
-<div class="action-card">
-
-<div class="action-icon history">
-
-<i class="bi bi-clock-history"></i>
-
-</div>
-
-<h4>
-
-History
-
-</h4>
-
-<p>
-
-View previous predictions
-
-</p>
-
-</div>
-
-</a>
-
-</div>
-
-<!-- DOWNLOAD -->
-
-<div class="col-lg-3 col-md-6">
-
-<a href="{{ url_for('download_report') }}"
-class="text-decoration-none">
-
-<div class="action-card">
-
-<div class="action-icon download">
-
-<i class="bi bi-download"></i>
-
-</div>
-
-<h4>
-
-Download
-
-</h4>
-
-<p>
-
-Download AI Report
-
-</p>
-
-</div>
-
-</a>
-
-</div>
-
-<!-- ANALYZE -->
+<!-- Analyze Again -->
 
 <div class="col-lg-3 col-md-6">
 
@@ -734,13 +852,9 @@ class="text-decoration-none">
 
 <div class="action-card">
 
-<div class="action-icon analyze">
+<i class="bi bi-search display-5"></i>
 
-<i class="bi bi-search"></i>
-
-</div>
-
-<h4>
+<h4 class="mt-3">
 
 Analyze Again
 
@@ -748,7 +862,94 @@ Analyze Again
 
 <p>
 
-Predict another personality
+Run a new AI personality prediction.
+
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+<!-- History -->
+
+<div class="col-lg-3 col-md-6">
+
+<a href="{{ url_for('history') }}"
+class="text-decoration-none">
+
+<div class="action-card">
+
+<i class="bi bi-clock-history display-5"></i>
+
+<h4 class="mt-3">
+
+History
+
+</h4>
+
+<p>
+
+View previous prediction reports.
+
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+<!-- Download -->
+
+<div class="col-lg-3 col-md-6">
+
+<a href="{{ url_for('download_report') }}"
+class="text-decoration-none">
+
+<div class="action-card">
+
+<i class="bi bi-download display-5"></i>
+
+<h4 class="mt-3">
+
+Download
+
+</h4>
+
+<p>
+
+Download PDF personality report.
+
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+<!-- Profile -->
+
+<div class="col-lg-3 col-md-6">
+
+<a href="{{ url_for('profile') }}"
+class="text-decoration-none">
+
+<div class="action-card">
+
+<i class="bi bi-person-circle display-5"></i>
+
+<h4 class="mt-3">
+
+Profile
+
+</h4>
+
+<p>
+
+View your account information.
 
 </p>
 
@@ -761,8 +962,6 @@ Predict another personality
 </div>
 
 </section>
-
-
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -938,26 +1137,30 @@ Predict another personality
     </div>
 
 </footer>
-<!-- ======================================================
-                    JAVASCRIPT
-====================================================== -->
+<!-- ==========================================
+GLOBAL VARIABLES
+========================================== -->
+
+<script>
+
+window.openness={{ prediction.Openness.score }};
+window.conscientiousness={{ prediction.Conscientiousness.score }};
+window.extraversion={{ prediction.Extraversion.score }};
+window.agreeableness={{ prediction.Agreeableness.score }};
+window.neuroticism={{ prediction.Neuroticism.score }};
+
+</script>
+
+<!-- ==========================================
+Dashboard JS
+========================================== -->
 
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
 <!-- Bootstrap -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
 
-window.openness={{ result.openness if result else 0 }};
-window.conscientiousness={{ result.conscientiousness if result else 0 }};
-window.extraversion={{ result.extraversion if result else 0 }};
-window.agreeableness={{ result.agreeableness if result else 0 }};
-window.neuroticism={{ result.neuroticism if result else 0 }};
-
-</script>
-
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 </body>
 
 </html>

@@ -105,6 +105,35 @@
     <!-- ================= HERO ================= -->
 
     <section class="analyze-section">
+    <div class="container mt-4">
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-warning alert-dismissible fade show shadow">
+
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                    {{ message }}
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                    </button>
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+</div>
 
     <div class="container">
 
@@ -154,13 +183,25 @@
 
             <p class="card-text">
 
-                Enter any public X (Twitter) username.
-                After integrating the X API, our AI model
-                will automatically fetch public posts and
-                predict the user's personality.
+Enter any public X (Twitter) username.
 
-            </p>
+<br><br>
 
+<span class="badge bg-warning text-dark">
+
+API Not Connected
+
+</span>
+
+       <br><br>
+
+          Username Analysis will be available after the X API
+           integration.
+
+             Currently, please use
+             <b>Social Media Posts Analysis</b>.
+
+               </p>
             <form action="/analyze" method="POST">
 
                 <input

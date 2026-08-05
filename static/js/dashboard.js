@@ -1,251 +1,367 @@
-// =====================================================
-// AI Personality Prediction Dashboard
+// ==========================================
+// AI Personality Dashboard
 // dashboard.js
-// =====================================================
+// ==========================================
 
-// ===============================
-// Page Loading Animation
-// ===============================
+
+// ==========================================
+// Page Fade
+// ==========================================
 
 window.addEventListener("load", () => {
 
-    document.body.classList.add("loaded");
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+
+document.body.style.transition="opacity .8s ease";
+
+document.body.style.opacity="1";
+
+},100);
 
 });
 
-// ===============================
-// Navbar Scroll Effect
-// ===============================
 
-const navbar = document.querySelector(".dashboard-navbar");
+// ==========================================
+// Navbar Scroll
+// ==========================================
 
-window.addEventListener("scroll", () => {
+const navbar=document.querySelector(".dashboard-navbar");
 
-    if (!navbar) return;
+window.addEventListener("scroll",()=>{
 
-    if (window.scrollY > 50) {
+if(window.scrollY>40){
 
-        navbar.classList.add("navbar-scrolled");
+navbar.style.background="#08111F";
 
-    } else {
-
-        navbar.classList.remove("navbar-scrolled");
-
-    }
-
-});
-
-// ===============================
-// Fade Animation
-// ===============================
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-}, {
-
-    threshold:0.15
-
-});
-
-document.querySelectorAll(
-
-".trait-card,.overall-card,.glass-section,.insight-card,.action-card"
-
-).forEach(card=>{
-
-    observer.observe(card);
-
-});
-
-// ===============================
-// Progress Bar Animation
-// ===============================
-
-const progressBars=document.querySelectorAll(".progress-bar");
-
-progressBars.forEach(bar=>{
-
-    const width=bar.style.width;
-
-    bar.style.width="0%";
-
-    setTimeout(()=>{
-
-        bar.style.transition="width 1.8s ease";
-
-        bar.style.width=width;
-
-    },400);
-
-});
-
-// ===============================
-// Overall Counter Animation
-// ===============================
-
-const counter = document.querySelector(".overall-circle");
-
-if (counter) {
-
-    let final = parseFloat(counter.textContent);
-
-    let current = 0;
-
-    const timer = setInterval(() => {
-
-        current += 0.1;
-
-        if (current >= final) {
-
-            current = final;
-
-            clearInterval(timer);
-
-        }
-
-        counter.textContent = current.toFixed(1) + "/5";
-
-    }, 20);
+navbar.style.boxShadow="0 10px 30px rgba(0,0,0,.35)";
 
 }
 
+else{
 
-// ===============================
-// Floating Background Animation
-// ===============================
+navbar.style.background="rgba(8,17,31,.92)";
 
-document.querySelectorAll(".bg-circle").forEach((circle,index)=>{
-
-circle.animate(
-
-[
-
-{
-
-transform:"translateY(0px)"
-
-},
-
-{
-
-transform:"translateY(-25px)"
-
-},
-
-{
-
-transform:"translateY(0px)"
+navbar.style.boxShadow="none";
 
 }
 
-],
+});
 
-{
 
-duration:6000+(index*1200),
+// ==========================================
+// Theme Toggle
+// ==========================================
 
-iterations:Infinity,
+const themeBtn=document.getElementById("themeToggle");
 
-direction:"alternate",
+const savedTheme=localStorage.getItem("theme");
 
-easing:"ease-in-out"
+if(savedTheme==="light"){
+
+document.body.classList.add("light-mode");
+
+themeBtn.innerHTML='<i class="bi bi-sun-fill"></i>';
 
 }
-
-);
-
-});
-
-
-// ===============================
-// Hover Animation
-// ===============================
-
-document.querySelectorAll(
-
-".trait-card,.overall-card,.glass-section,.insight-card,.action-card"
-
-).forEach(card=>{
-
-card.addEventListener("mousemove",(e)=>{
-
-const rect=card.getBoundingClientRect();
-
-const x=e.clientX-rect.left;
-
-const y=e.clientY-rect.top;
-
-card.style.setProperty("--x",x+"px");
-
-card.style.setProperty("--y",y+"px");
-
-});
-
-});
-
-
-// ===============================
-// Button Ripple Effect
-// ===============================
-
-document.querySelectorAll(".btn").forEach(btn=>{
-
-btn.addEventListener("mouseenter",()=>{
-
-btn.style.transition=".35s";
-
-btn.style.transform="translateY(-3px)";
-
-});
-
-btn.addEventListener("mouseleave",()=>{
-
-btn.style.transform="translateY(0px)";
-
-});
-
-});
-const themeBtn = document.getElementById("themeToggle");
 
 if(themeBtn){
 
-    // Load saved theme
-    if(localStorage.getItem("theme")==="light"){
+themeBtn.addEventListener("click",()=>{
 
-        document.body.classList.add("light-mode");
+document.body.classList.toggle("light-mode");
 
-        themeBtn.innerHTML='<i class="bi bi-sun-fill"></i>';
+if(document.body.classList.contains("light-mode")){
 
-    }
+localStorage.setItem("theme","light");
 
-    themeBtn.addEventListener("click",()=>{
-
-        document.body.classList.toggle("light-mode");
-
-        if(document.body.classList.contains("light-mode")){
-
-            localStorage.setItem("theme","light");
-
-            themeBtn.innerHTML='<i class="bi bi-sun-fill"></i>';
-
-        }else{
-
-            localStorage.setItem("theme","dark");
-
-            themeBtn.innerHTML='<i class="bi bi-moon-fill"></i>';
-
-        }
-
-    });
+themeBtn.innerHTML='<i class="bi bi-sun-fill"></i>';
 
 }
+
+else{
+
+localStorage.setItem("theme","dark");
+
+themeBtn.innerHTML='<i class="bi bi-moon-fill"></i>';
+
+}
+
+});
+
+}
+
+
+// ==========================================
+// Reveal Animation
+// ==========================================
+
+const reveal=document.querySelectorAll(
+
+".trait-card,.analysis-box,.glass-card,.action-card"
+
+);
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
+}
+
+});
+
+},{threshold:.15});
+
+reveal.forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(50px)";
+
+card.style.transition=".8s";
+
+observer.observe(card);
+
+});
+// ==========================================
+// Progress Bar Animation
+// ==========================================
+
+const progressBars=document.querySelectorAll(".progress-bar");
+
+const progressObserver=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+const bar=entry.target;
+
+const width=bar.style.width;
+
+bar.style.width="0%";
+
+setTimeout(()=>{
+
+bar.style.transition="width 2s ease";
+
+bar.style.width=width;
+
+},300);
+
+}
+
+});
+
+},{threshold:.3});
+
+progressBars.forEach(bar=>{
+
+progressObserver.observe(bar);
+
+});
+
+
+// ==========================================
+// Overall Score Counter
+// ==========================================
+
+const overall=document.querySelector(".analysis-box h1");
+
+if(overall){
+
+const finalValue=parseFloat(overall.innerText);
+
+let current=0;
+
+const counter=setInterval(()=>{
+
+current+=0.05;
+
+if(current>=finalValue){
+
+current=finalValue;
+
+clearInterval(counter);
+
+}
+
+overall.innerHTML=current.toFixed(2)+"/5";
+
+},20);
+
+}
+
+
+// ==========================================
+// Card Hover Effect
+// ==========================================
+
+const cards=document.querySelectorAll(
+
+".trait-card,.analysis-box,.glass-card,.action-card"
+
+);
+
+cards.forEach(card=>{
+
+card.addEventListener("mouseenter",()=>{
+
+card.style.transform="translateY(-8px) scale(1.02)";
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="translateY(0) scale(1)";
+
+});
+
+});
+
+
+// ==========================================
+// Radar Chart
+// ==========================================
+
+const radarCanvas=document.getElementById("oceanChart");
+
+if(radarCanvas){
+
+new Chart(radarCanvas,{
+
+type:"radar",
+
+data:{
+
+labels:[
+
+"Openness",
+
+"Conscientiousness",
+
+"Extraversion",
+
+"Agreeableness",
+
+"Neuroticism"
+
+],
+
+datasets:[{
+
+label:"OCEAN Score",
+
+data:[
+
+window.openness,
+
+window.conscientiousness,
+
+window.extraversion,
+
+window.agreeableness,
+
+window.neuroticism
+
+],
+
+fill:true,
+
+backgroundColor:"rgba(108,99,255,.20)",
+
+borderColor:"#6C63FF",
+
+borderWidth:3,
+
+pointBackgroundColor:"#ffffff",
+
+pointBorderColor:"#6C63FF",
+
+pointRadius:5
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:false,
+
+scales:{
+
+r:{
+
+min:0,
+
+max:5,
+
+ticks:{
+
+stepSize:1,
+
+color:"#cbd5e1"
+
+},
+
+grid:{
+
+color:"rgba(255,255,255,.15)"
+
+},
+
+angleLines:{
+
+color:"rgba(255,255,255,.15)"
+
+},
+
+pointLabels:{
+
+color:"#ffffff",
+
+font:{
+
+size:14,
+
+weight:"bold"
+
+}
+
+}
+
+}
+
+},
+
+plugins:{
+
+legend:{
+
+display:false
+
+}
+
+}
+
+}
+
+});
+
+}
+
+
+// ==========================================
+// Console
+// ==========================================
+
+console.log("AI Dashboard Loaded Successfully 🚀");
