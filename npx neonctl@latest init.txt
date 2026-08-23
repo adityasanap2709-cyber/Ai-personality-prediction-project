@@ -1,0 +1,8 @@
+npx neonctl@latest init
+
+
+
+postgresql://neondb_owner:npg_g75nqUPDhyas@ep-solitary-bread-azk4t29s.c-3.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+
+
+postgresql://neondb_owner:npg_g75nqUPDhyas@ep-solitary-bread-azk4t29s.c-3.ap-southeast-1.aws.neon.tech/neondb?sslmode=require

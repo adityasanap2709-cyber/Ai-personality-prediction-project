@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Personality Prediction</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2563eb,#0f172a);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:950px;
+    background:#fff;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+h1{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#555;
+    margin-bottom:30px;
+}
+
+textarea{
+    width:100%;
+    height:180px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    font-size:16px;
+    resize:none;
+    outline:none;
+}
+
+textarea:focus{
+    border-color:#2563eb;
+}
+
+.upload{
+    margin-top:20px;
+    padding:20px;
+    border:2px dashed #2563eb;
+    border-radius:10px;
+    background:#f8fbff;
+}
+
+.upload label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:bold;
+    color:#1e3a8a;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.error{
+    margin-top:20px;
+    background:#ffe5e5;
+    color:#b00020;
+    padding:15px;
+    border-radius:10px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.result{
+    margin-top:40px;
+}
+
+.card{
+    background:#f8fbff;
+    border-left:6px solid #2563eb;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    color:#1e3a8a;
+    margin-bottom:12px;
+}
+
+.progress{
+    width:100%;
+    height:22px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0;
+}
+
+.bar{
+    height:100%;
+    background:#2563eb;
+    color:#fff;
+    text-align:center;
+    line-height:22px;
+    font-size:13px;
+}
+
+.info{
+    line-height:1.8;
+    color:#333;
+}
+
+.info strong{
+    color:#1e3a8a;
+}
+
+.summary{
+    margin-top:30px;
+    background:#eef5ff;
+    border-left:6px solid #0f62fe;
+    padding:20px;
+    border-radius:12px;
+}
+
+.summary h2{
+    color:#1e3a8a;
+    margin-bottom:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Personality Prediction System</h1>
+
+<p class="subtitle">
+Enter text manually or upload a screenshot of a social media post.
+</p><form action="/predict" method="POST" enctype="multipart/form-data">
+
+    <textarea
+        name="text"
+        placeholder="Type your social media post here...">{{ input_text }}</textarea>
+
+    <div class="upload">
+
+        <label>📷 Upload Screenshot (Optional)</label>
+
+        <input
+            type="file"
+            name="image"
+            accept=".png,.jpg,.jpeg">
+
+    </div>
+
+    <button type="submit">
+        Predict Personality
+    </button>
+
+</form>
+
+{% if error %}
+
+<div class="error">
+    {{ error }}
+</div>
+
+{% endif %}{% if prediction %}
+
+<div class="result">
+
+    <h2 style="text-align:center;color:#1e3a8a;margin-bottom:30px;">
+        Predicted OCEAN Personality
+    </h2>
+
+    {% for trait, info in prediction.items() %}
+
+    {% if trait != "summary" %}
+
+    <div class="card">
+
+        <h3>{{ trait }}</h3>
+
+        <div class="progress">
+
+            <div
+                class="bar"
+                style="width: {{ (info.score / 5) * 100 }}%;">
+
+                {{ info.score }}/5
+
+            </div>
+
+        </div>
+
+        <div class="info">
+
+            <p>
+                <strong>Score:</strong>
+                {{ info.score }}/5
+            </p>
+
+            <p>
+                <strong>Level:</strong>
+                {{ info.level }}
+            </p>
+
+            <p>
+                <strong>Description:</strong>
+            </p>
+
+            <p style="text-align:justify; margin-top:8px;">
+                {{ info.description }}
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    {% endfor %}    {% if prediction.summary %}
+
+    <div class="summary">
+
+        <h2>Overall Personality Summary</h2>
+
+        <p style="line-height:1.8; text-align:justify; color:#333;">
+
+            {{ prediction.summary }}
+
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endif %}</div>
+
+</body>
+
+</html>
