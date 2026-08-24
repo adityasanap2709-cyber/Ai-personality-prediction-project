@@ -525,3 +525,66 @@ body.light-mode #themeToggle i{
     background:linear-gradient(135deg,#4f46e5,#06b6d4);
 
 }
+
+
+/* ==========================================
+   AI FEATURES + OCEAN TRAITS — LIGHT MODE FIX
+========================================== */
+
+body.light-mode .features-section,
+body.light-mode .traits-section{
+
+    background:#f5f7fb !important;
+
+}
+
+body.light-mode .features-section .section-badge,
+body.light-mode .traits-section .section-badge{
+
+    background:rgba(108,92,231,.12) !important;
+
+    color:#6c5ce7 !important;
+
+}
+
+body.light-mode .features-section .section-title h2,
+body.light-mode .traits-section .section-title h2{
+
+    color:#111 !important;
+
+}
+
+body.light-mode .features-section .section-title p,
+body.light-mode .traits-section .section-title p{
+
+    color:#555 !important;
+
+}
+
+body.light-mode .trait-card{
+
+    background:#ffffff !important;
+
+    border:1px solid #e5e7eb !important;
+
+}
+
+body.light-mode .trait-card h4{
+
+    color:#111 !important;
+
+}
+
+body.light-mode .trait-card p,
+body.light-mode .trait-card ul li{
+
+    color:#555 !important;
+
+}
+
+body.light-mode .feature-icon i,
+body.light-mode .trait-icon i{
+
+    color:#ffffff !important;
+
+}
