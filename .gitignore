@@ -6,4 +6,7 @@ env/
 database.db
 tempCodeRunnerFile.py
 static/uploads/
+.vscode/
+uploads/
+*.zip
 saved_model/

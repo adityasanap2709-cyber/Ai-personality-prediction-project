@@ -290,7 +290,4 @@ if __name__ == "__main__":
         print("-" * 70)
 
     print("\nOverall Personality Summary\n")
-
     print(result["summary"])
-    print(result["summary"])
-
