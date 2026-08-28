@@ -1,5 +1,6 @@
 import torch
 from transformers import BertTokenizer
+from huggingface_hub import hf_hub_download
 
 from training.model import OceanBERT
 from training.config import (
@@ -17,17 +18,30 @@ tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
 # -----------------------------
 # Load Trained Model
 # -----------------------------
+MODEL_REPO = "Aditya12421/AI-Personality-OCEAN"
+
+print("Downloading model from Hugging Face...")
+
+MODEL_PATH = hf_hub_download(
+    repo_id=MODEL_REPO,
+    filename="ocean_bert.pth"
+)
+
+print("Model downloaded:", MODEL_PATH)
+
 model = OceanBERT()
 
 model.load_state_dict(
     torch.load(
-        MODEL_SAVE_PATH + "ocean_bert.pth",
-        map_location=DEVICE,
+        MODEL_PATH,
+        map_location=DEVICE
     )
 )
 
 model.to(DEVICE)
 model.eval()
+
+print("OCEAN-BERT model loaded successfully!")
 
 
 # -----------------------------

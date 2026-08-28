@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from flask import (
     Flask,
     render_template,
@@ -1264,7 +1264,7 @@ def authorize():
 if __name__ == "__main__":
 
    app.run(debug=True, use_reloader=False)
-=======
+
 
 from flask import Flask, render_template, request
 import os
@@ -1351,4 +1351,4 @@ def predict():
 # -----------------------------
 if __name__ == "__main__":
     app.run(debug=True)
->>>>>>> 44cfbb2cd6afe3c334fe13e90b138ac51623f68a
+
